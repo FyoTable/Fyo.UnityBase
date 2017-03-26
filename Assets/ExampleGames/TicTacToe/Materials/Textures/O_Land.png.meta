@@ -1,0 +1,924 @@
+fileFormatVersion: 2
+guid: 1be91a53d45542144944d697a31aba49
+timeCreated: 1490492957
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: O_Land_0
+    21300002: O_Land_1
+    21300004: O_Land_2
+    21300006: O_Land_3
+    21300008: O_Land_4
+    21300010: O_Land_5
+    21300012: O_Land_6
+    21300014: O_Land_7
+    21300016: O_Land_8
+    21300018: O_Land_9
+    21300020: O_Land_10
+    21300022: O_Land_11
+    21300024: O_Land_12
+    21300026: O_Land_13
+    21300028: O_Land_14
+    21300030: O_Land_15
+    21300032: O_Land_16
+    21300034: O_Land_17
+    21300036: O_Land_18
+    21300038: O_Land_19
+    21300040: O_Land_20
+    21300042: O_Land_21
+    21300044: O_Land_22
+    21300046: O_Land_23
+    21300048: O_Land_24
+    21300050: O_Land_25
+    21300052: O_Land_26
+    21300054: O_Land_27
+    21300056: O_Land_28
+    21300058: O_Land_29
+    21300060: O_Land_30
+    21300062: O_Land_31
+    21300064: O_Land_32
+    21300066: O_Land_33
+    21300068: O_Land_34
+    21300070: O_Land_35
+    21300072: O_Land_36
+    21300074: O_Land_37
+    21300076: O_Land_38
+    21300078: O_Land_39
+    21300080: O_Land_40
+    21300082: O_Land_41
+    21300084: O_Land_42
+    21300086: O_Land_43
+    21300088: O_Land_44
+    21300090: O_Land_45
+    21300092: O_Land_46
+    21300094: O_Land_47
+    21300096: O_Land_48
+    21300098: O_Land_49
+    21300100: O_Land_50
+    21300102: O_Land_51
+    21300104: O_Land_52
+    21300106: O_Land_53
+    21300108: O_Land_54
+    21300110: O_Land_55
+    21300112: O_Land_56
+    21300114: O_Land_57
+    21300116: O_Land_58
+    21300118: O_Land_59
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: O_Land_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_1
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_2
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_3
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_4
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_5
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_6
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_7
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_8
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_9
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 5404.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_11
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_12
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_13
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_14
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_15
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_16
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_17
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_18
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_19
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 4324.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_21
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_22
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_23
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_24
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_25
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_26
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_27
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_28
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_29
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 3244.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_31
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_32
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_33
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_34
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_35
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_36
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_37
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_38
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_39
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 2164.1665
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_41
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_42
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_43
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_44
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_45
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_46
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_47
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_48
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_49
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 1084.1666
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_50
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_51
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_52
+      rect:
+        serializedVersion: 2
+        x: 2174
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_53
+      rect:
+        serializedVersion: 2
+        x: 3261
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_54
+      rect:
+        serializedVersion: 2
+        x: 4348
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_55
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_56
+      rect:
+        serializedVersion: 2
+        x: 6522
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_57
+      rect:
+        serializedVersion: 2
+        x: 7609
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_58
+      rect:
+        serializedVersion: 2
+        x: 8696
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: O_Land_59
+      rect:
+        serializedVersion: 2
+        x: 9783
+        y: 4.166626
+        width: 1087.9
+        height: 1080.8334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

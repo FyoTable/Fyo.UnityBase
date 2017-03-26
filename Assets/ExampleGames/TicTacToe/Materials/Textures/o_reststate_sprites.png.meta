@@ -1,0 +1,1428 @@
+fileFormatVersion: 2
+guid: cfa48d90b129f8a4e9105cc7b841e87d
+timeCreated: 1490494378
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: o_reststate_sprites_0
+    21300002: o_reststate_sprites_1
+    21300004: o_reststate_sprites_2
+    21300006: o_reststate_sprites_3
+    21300008: o_reststate_sprites_4
+    21300010: o_reststate_sprites_5
+    21300012: o_reststate_sprites_6
+    21300014: o_reststate_sprites_7
+    21300016: o_reststate_sprites_8
+    21300018: o_reststate_sprites_9
+    21300020: o_reststate_sprites_10
+    21300022: o_reststate_sprites_11
+    21300024: o_reststate_sprites_12
+    21300026: o_reststate_sprites_13
+    21300028: o_reststate_sprites_14
+    21300030: o_reststate_sprites_15
+    21300032: o_reststate_sprites_16
+    21300034: o_reststate_sprites_17
+    21300036: o_reststate_sprites_18
+    21300038: o_reststate_sprites_19
+    21300040: o_reststate_sprites_20
+    21300042: o_reststate_sprites_21
+    21300044: o_reststate_sprites_22
+    21300046: o_reststate_sprites_23
+    21300048: o_reststate_sprites_24
+    21300050: o_reststate_sprites_25
+    21300052: o_reststate_sprites_26
+    21300054: o_reststate_sprites_27
+    21300056: o_reststate_sprites_28
+    21300058: o_reststate_sprites_29
+    21300060: o_reststate_sprites_30
+    21300062: o_reststate_sprites_31
+    21300064: o_reststate_sprites_32
+    21300066: o_reststate_sprites_33
+    21300068: o_reststate_sprites_34
+    21300070: o_reststate_sprites_35
+    21300072: o_reststate_sprites_36
+    21300074: o_reststate_sprites_37
+    21300076: o_reststate_sprites_38
+    21300078: o_reststate_sprites_39
+    21300080: o_reststate_sprites_40
+    21300082: o_reststate_sprites_41
+    21300084: o_reststate_sprites_42
+    21300086: o_reststate_sprites_43
+    21300088: o_reststate_sprites_44
+    21300090: o_reststate_sprites_45
+    21300092: o_reststate_sprites_46
+    21300094: o_reststate_sprites_47
+    21300096: o_reststate_sprites_48
+    21300098: o_reststate_sprites_49
+    21300100: o_reststate_sprites_50
+    21300102: o_reststate_sprites_51
+    21300104: o_reststate_sprites_52
+    21300106: o_reststate_sprites_53
+    21300108: o_reststate_sprites_54
+    21300110: o_reststate_sprites_55
+    21300112: o_reststate_sprites_56
+    21300114: o_reststate_sprites_57
+    21300116: o_reststate_sprites_58
+    21300118: o_reststate_sprites_59
+    21300120: o_reststate_sprites_60
+    21300122: o_reststate_sprites_61
+    21300124: o_reststate_sprites_62
+    21300126: o_reststate_sprites_63
+    21300128: o_reststate_sprites_64
+    21300130: o_reststate_sprites_65
+    21300132: o_reststate_sprites_66
+    21300134: o_reststate_sprites_67
+    21300136: o_reststate_sprites_68
+    21300138: o_reststate_sprites_69
+    21300140: o_reststate_sprites_70
+    21300142: o_reststate_sprites_71
+    21300144: o_reststate_sprites_72
+    21300146: o_reststate_sprites_73
+    21300148: o_reststate_sprites_74
+    21300150: o_reststate_sprites_75
+    21300152: o_reststate_sprites_76
+    21300154: o_reststate_sprites_77
+    21300156: o_reststate_sprites_78
+    21300158: o_reststate_sprites_79
+    21300160: o_reststate_sprites_80
+    21300162: o_reststate_sprites_81
+    21300164: o_reststate_sprites_82
+    21300166: o_reststate_sprites_83
+    21300168: o_reststate_sprites_84
+    21300170: o_reststate_sprites_85
+    21300172: o_reststate_sprites_86
+    21300174: o_reststate_sprites_87
+    21300176: o_reststate_sprites_88
+    21300178: o_reststate_sprites_89
+    21300180: o_reststate_sprites_90
+    21300182: o_reststate_sprites_91
+    21300184: o_reststate_sprites_92
+    21300186: o_reststate_sprites_93
+    21300188: o_reststate_sprites_94
+    21300190: o_reststate_sprites_95
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: o_reststate_sprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_1
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_2
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_3
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_4
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_5
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_6
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_7
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 11890.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_9
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_10
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_11
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_12
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_13
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_14
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_15
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 10810.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_17
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_18
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_19
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_20
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_21
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_22
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_23
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 9730.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_25
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_26
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_27
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_28
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_29
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_30
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_31
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 8650.083
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_33
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_34
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_35
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_36
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_37
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_38
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_39
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 7570.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_41
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_42
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_43
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_44
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_45
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_46
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_47
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 6490.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_49
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_50
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_51
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_52
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_53
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_54
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_55
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 5410.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_57
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_58
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_59
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_60
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_61
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_62
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_63
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 4330.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_65
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_66
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_67
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_68
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_69
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_70
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_71
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 3250.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_73
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_74
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_75
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_76
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_77
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_78
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_79
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 2170.0835
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_80
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_81
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_82
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_83
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_84
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_85
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_86
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_87
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 1090.0834
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_88
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_89
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_90
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_91
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_92
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_93
+      rect:
+        serializedVersion: 2
+        x: 5500
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_94
+      rect:
+        serializedVersion: 2
+        x: 6600
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: o_reststate_sprites_95
+      rect:
+        serializedVersion: 2
+        x: 7700
+        y: 10.083374
+        width: 1100.875
+        height: 1080.9166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

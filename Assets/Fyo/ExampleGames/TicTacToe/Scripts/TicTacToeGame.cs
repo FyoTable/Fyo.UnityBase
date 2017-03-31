@@ -7,17 +7,22 @@ public class TicTacToeGame : SocketGamepadManager {
     public GameObject GridObject;
     public List<TicTacToeCell> Grid = new List<TicTacToeCell>();
 
-    public TicTacToePlayer[] Players = new TicTacToePlayer[2];
     int PlayerTurn = 1;
     int Winner = -1;
-    
+
+    protected override void OnStart() {
+        LocalPlayers = new GamePlayer[2];
+        LocalPlayers[0] = new TicTacToePlayer();
+        LocalPlayers[1] = new TicTacToePlayer();
+    }
+
     public override void HandleGamepadHandshake(SocketIOEvent e) {
         SGHandshakeMsg handshakeMsg = new SGHandshakeMsg(e.data);
         SocketGamepad gamepad;
-        if (Players[0].Gamepad == null) {
-            gamepad = CreateGamepad(Players[0], handshakeMsg.SocketGamepadID);
+        if (LocalPlayers[0].Gamepad == null) {
+            gamepad = CreateGamepad(LocalPlayers[0], handshakeMsg.PlayerId);
         } else {
-            gamepad = CreateGamepad(Players[1], handshakeMsg.SocketGamepadID);
+            gamepad = CreateGamepad(LocalPlayers[1], handshakeMsg.PlayerId);
         }
 
         if (InputIndicatorPrefab != null) {
@@ -25,24 +30,24 @@ public class TicTacToeGame : SocketGamepadManager {
             Tester.Gamepad = gamepad;
         }
 
-        Debug.Log("[Tic Tac Toe] Gamepad Handshake: " + gamepad.ID.ToString());
+        Debug.Log("[Tic Tac Toe] Gamepad Handshake: " + gamepad.PlayerId.ToString());
     }
 
     public override void HandleGamepadDisconnected(SocketIOEvent e) {
         int gid = 0;
-        e.data.GetField(ref gid, "SocketGamepadID");
+        e.data.GetField(ref gid, "PlayerId");
         if (gid > -1 && gid < Gamepads.Count) {
             SocketGamepad gamepad = GetGamepad(gid);
             Debug.Log("[Tic Tac Toe] Removing Gamepad " + gid.ToString() + " and player.");
 
-            if (Players[0].Gamepad == gamepad) {
-                Players[0].PlayerIcon.SetActive(false);
-                Players[0].Gamepad = null;
+            if (LocalPlayers[0].Gamepad == gamepad) {
+                ((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.SetActive(false);
+                LocalPlayers[0].Gamepad = null;
             }
 
-            if (Players[1].Gamepad == gamepad) {
-                Players[1].PlayerIcon.SetActive(false);
-                Players[1].Gamepad = null;
+            if (LocalPlayers[1].Gamepad == gamepad) {
+                ((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.SetActive(false);
+                LocalPlayers[1].Gamepad = null;
             }
 
             Gamepads.Remove(gamepad);
@@ -106,7 +111,7 @@ public class TicTacToeGame : SocketGamepadManager {
             cell.X.SetActive(false);
             cell.O.SetActive(false);
         }
-        Players[0].Ready = Players[1].Ready = false;
+        LocalPlayers[0].Ready = LocalPlayers[1].Ready = false;
     }
 
     public override void Start() {
@@ -116,17 +121,17 @@ public class TicTacToeGame : SocketGamepadManager {
     }
 
     public void OnAddGamepad(int GamepadId) {
-        if (!Players[0].PlayerIcon.activeSelf) {
-            if (Players[0].PlayerIcon != null) {
-                Players[0].PlayerIcon.SetActive(true);
+        if (!((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.activeSelf) {
+            if (((TicTacToePlayer)LocalPlayers[0]).PlayerIcon != null) {
+                ((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.SetActive(true);
             }
-            Players[0].Gamepad = GetGamepad(GamepadId);
+            LocalPlayers[0].Gamepad = GetGamepad(GamepadId);
             //TODO: Feedback to controller - Show "Ready" For selection
-        } else if (!Players[1].PlayerIcon.activeSelf) {
-            if (Players[1].PlayerIcon != null) {
-                Players[1].PlayerIcon.SetActive(true);
+        } else if (!((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.activeSelf) {
+            if (((TicTacToePlayer)LocalPlayers[1]).PlayerIcon != null) {
+                ((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.SetActive(true);
             }
-            Players[1].Gamepad = GetGamepad(GamepadId);
+            LocalPlayers[1].Gamepad = GetGamepad(GamepadId);
             //TODO: Feedback to controller - Show "Ready" For selection
         } else {
             Debug.Log("[Tic Tac Toe] Only two players can play Tic Tac Toe, fuck off.");
@@ -137,32 +142,32 @@ public class TicTacToeGame : SocketGamepadManager {
         Debug.Log("[Tic Tac Toe] Starting Game");
         Reset();
         PlayerTurn = 1;
-        Players[0].isMyTurn = true;
+        ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = true;
     }
 
     protected void TriggerEndgame() {
-        if (Players[0] != null)
-            Players[0].Ready = false;
+        if (LocalPlayers[0] != null)
+            LocalPlayers[0].Ready = false;
 
-        if (Players[1] != null)
-            Players[1].Ready = false;
+        if (LocalPlayers[1] != null)
+            LocalPlayers[1].Ready = false;
 
         switch (Winner) {
             case 1:
                 //TODO: Display Text
                 Debug.Log("[Tic Tac Toe] X Won");
-                Players[0].Wins++;
+                ((TicTacToePlayer)LocalPlayers[0]).Wins++;
                 break;
             case 2:
                 //TODO: Display Text
                 Debug.Log("[Tic Tac Toe] O Won");
-                Players[1].Wins++;
+                ((TicTacToePlayer)LocalPlayers[1]).Wins++;
                 break;
             case 3:
                 //TODO: Display Text
                 Debug.Log("[Tic Tac Toe] Draw");
-                Players[0].Draws++;
-                Players[1].Draws++;
+                ((TicTacToePlayer)LocalPlayers[0]).Draws++;
+                ((TicTacToePlayer)LocalPlayers[1]).Draws++;
                 break;
         }
 
@@ -170,13 +175,13 @@ public class TicTacToeGame : SocketGamepadManager {
     }
     
     protected void SetReady(int mark) {
-        if (mark < Players.Length && Players[mark] != null) {
-            if(Players[mark] != null)
-                Players[mark].Ready = true;
+        if (mark < LocalPlayers.Length && LocalPlayers[mark] != null) {
+            if(LocalPlayers[mark] != null)
+                LocalPlayers[mark].Ready = true;
         }
 
-        if (Players[0] != null && Players[1] != null) {
-            if (Players[0].Ready && Players[1].Ready) {
+        if (LocalPlayers[0] != null && LocalPlayers[1] != null) {
+            if (LocalPlayers[0].Ready && LocalPlayers[1].Ready) {
                 StartGame();
             }
         }
@@ -207,13 +212,13 @@ public class TicTacToeGame : SocketGamepadManager {
                 }
 
                 if (PlayerTurn == 1) {
-                    Players[0].isMyTurn = false;
+                    ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = false;
                     PlayerTurn = 2;
-                    Players[1].isMyTurn = true;
+                    ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = true;
                 } else if (PlayerTurn == 2) {
-                    Players[1].isMyTurn = false;
+                    ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = false;
                     PlayerTurn = 1;
-                    Players[0].isMyTurn = true;
+                    ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = true;
                 }
 
                 if ((Winner = CheckWinner()) > 0) {
@@ -228,7 +233,7 @@ public class TicTacToeGame : SocketGamepadManager {
                     //Ready
                     SetReady(mark);
 
-                    if (Gamepads.Count > 1 && Players[0].Ready && Players[1].Ready) {                       
+                    if (Gamepads.Count > 1 && LocalPlayers[0].Ready && LocalPlayers[1].Ready) {                       
                         StartGame();
                     }
                     break;

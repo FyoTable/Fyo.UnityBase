@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SGHandshakeMsg : JSONObject {
-    public int SocketGamepadID;
+    public int PlayerId;
     public bool IsMaster = false;
 
     public SGHandshakeMsg() {
-        AddField("SocketGamepadID", SocketGamepadID);
+        AddField("PlayerId", PlayerId);
     }
 
     public SGHandshakeMsg(JSONObject clone) {
-        clone.GetField(ref SocketGamepadID, "SocketGamepadID");
+        clone.GetField(ref PlayerId, "PlayerId");
         Serialize();
     }
 
     public void Serialize() {
-        SetField("SocketGamepadID", SocketGamepadID);
+        SetField("PlayerId", PlayerId);
     }
 
     public void Deserialize() {
-        GetField(ref SocketGamepadID, "SocketGamepadID");
+        GetField(ref PlayerId, "PlayerId");
     }
 }

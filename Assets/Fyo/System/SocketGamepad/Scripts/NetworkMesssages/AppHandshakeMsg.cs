@@ -20,8 +20,8 @@ public class AppHandshakeMsg : JSONObject {
     }
 
     public void Serialize() {
-        SetField("AppIDString", AppIDString);
-        SetField("BinaryData", BinaryData);
+        SetField("AppIDString", JSONObject.CreateStringObject(AppIDString));
+        SetField("BinaryData", JSONObject.CreateStringObject(BinaryData));
         //SetField("Colors");
     }
 

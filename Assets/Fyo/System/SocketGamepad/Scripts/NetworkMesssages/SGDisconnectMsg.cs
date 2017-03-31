@@ -6,19 +6,19 @@ public class SocketGamepadDisconnectMessage : JSONObject {
     public int SocketGamepadID;
 
     public SocketGamepadDisconnectMessage() {
-        AddField("SocketGamepadID", SocketGamepadID);
+        AddField("PlayerId", SocketGamepadID);
     }
 
     public SocketGamepadDisconnectMessage(JSONObject clone) {
-        clone.GetField(ref SocketGamepadID, "SocketGamepadID");
+        clone.GetField(ref SocketGamepadID, "PlayerId");
         Serialize();
     }
 
     public void Serialize() {
-        SetField("SocketGamepadID", SocketGamepadID);
+        SetField("PlayerId", SocketGamepadID);
     }
 
     public void Deserialize() {
-        GetField(ref SocketGamepadID, "SocketGamepadID");
+        GetField(ref SocketGamepadID, "PlayerId");
     }
 }

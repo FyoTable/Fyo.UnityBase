@@ -14,13 +14,13 @@ public class SGUpdateMsg : JSONObject {
     public SGUpdateMsg(JSONObject msgObject) : base() {
         InitializeKeys();
 
-        if (msgObject.HasField("SocketGamepadID")) {
-            if (!int.TryParse(msgObject.GetField("SocketGamepadID").str, out SocketGamepadID)) {
+        if (msgObject.HasField("PlayerId")) {
+            if (!int.TryParse(msgObject.GetField("PlayerId").str, out SocketGamepadID)) {
                 Debug.LogError("Socket Gamepad Message missing id");
             }
 
-            SocketGamepadID = int.Parse(msgObject.GetField("SocketGamepadID").str);
-            JSONObject inputJson = msgObject.GetField("inputs");
+            SocketGamepadID = int.Parse(msgObject.GetField("PlayerId").str);
+            JSONObject inputJson = msgObject.GetField("data");
             string inputStr = inputJson.str;
             string[] strArr = inputStr.Split(',');
             if (strArr.Length > 0) {
@@ -35,14 +35,14 @@ public class SGUpdateMsg : JSONObject {
 
     public SGUpdateMsg(SocketGamepad gamepad) : base() {
         InitializeKeys();
-        SocketGamepadID = gamepad.ID;
+        SocketGamepadID = gamepad.PlayerId;
         inputs = gamepad.inputs;
         Serialize();
     }
 
     void InitializeKeys() {
-        AddField("SocketGamepadID", -1);
-        AddField("inputs", "{" +
+        AddField("PlayerId", -1);
+        AddField("data", "{" +
         "0.0f, 0.0f, 0.0f, 0.0f, 0.0f," +
         "0.0f, 0.0f, 0.0f, 0.0f, 0.0f," +
         "0.0f, 0.0f, 0.0f, 0.0f, 0.0f," +
@@ -57,7 +57,7 @@ public class SGUpdateMsg : JSONObject {
             InitializeKeys();
         }
 
-        SetField("SocketGamepadID", SocketGamepadID);
+        SetField("PlayerId", SocketGamepadID);
 
         string strInputs = "{";
         for (int i = 0; i < inputs.Length; i++) {
@@ -68,7 +68,7 @@ public class SGUpdateMsg : JSONObject {
         }
         strInputs += "}";
 
-        SetField("inputs", new JSONObject(strInputs));
+        SetField("data", new JSONObject(strInputs));
 
         return r;
     }
@@ -78,8 +78,8 @@ public class SGUpdateMsg : JSONObject {
             InitializeKeys();
         }
 
-        SocketGamepadID = int.Parse(GetField("SocketGamepadID").str);
-        JSONObject inputJson = GetField("inputs");
+        SocketGamepadID = int.Parse(GetField("PlayerId").str);
+        JSONObject inputJson = GetField("data");
         string inputStr = inputJson.str;
         string[] strArr = inputStr.Split(',');
         if (strArr.Length > 0) {

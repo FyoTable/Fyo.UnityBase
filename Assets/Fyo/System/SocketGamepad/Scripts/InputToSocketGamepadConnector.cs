@@ -73,7 +73,7 @@ public class InputToSocketGamepadConnector : MonoBehaviour {
     void Update () {
         if (GamepadManager != null) {
             UpdateInput();
-            msg.SocketGamepadID = gamepad.ID;
+            msg.SocketGamepadID = gamepad.PlayerId;
             msg.inputs = GamepadInputs;
             msg.Serialize();
             GamepadManager.HandleGamepadUpdate(new SocketIO.SocketIOEvent("SGUpdateMsg", msg));

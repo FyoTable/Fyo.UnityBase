@@ -182,26 +182,15 @@ public class JSONObject {
 		obj.type = Type.STRING;
 		obj.str = val;
 		return obj;
-    }
-    public static JSONObject CreateStringListObject(string[] val) {
-        JSONObject obj = Create();
-        obj.type = Type.ARRAY;
-        JSONObject strObj;
-        for (int s = 0; s < val.Length; s++) {
-            strObj = Create();
-            strObj.type = Type.STRING;
-            strObj.str = val[s];
-            obj.Add(strObj);
-        }
-        return obj;
-    }
-
-    public static JSONObject CreateBakedObject(string val) {
+	}
+	public static JSONObject CreateBakedObject(string val) {
 		JSONObject bakedObject = Create();
 		bakedObject.type = Type.BAKED;
 		bakedObject.str = val;
 		return bakedObject;
 	}
+
+
 
 	/// <summary>
 	/// Create a JSONObject by parsing string data
@@ -250,12 +239,8 @@ public class JSONObject {
 		Parse(str, maxDepth, storeExcessLevels, strict);
 	}
 
-    public JSONObject(string[] colors) {
-        this.colors = colors;
-    }
-
-    // Default parameters fix
-    void Parse(string str) { Parse(str, -2, false, false); }
+	// Default parameters fix
+	void Parse(string str) { Parse(str, -2, false, false); }
 	void Parse(string str, int maxDepth, bool storeExcessLevels, bool strict) {
 		if(!string.IsNullOrEmpty(str)) {
 			str = str.Trim(WHITESPACE);
@@ -411,9 +396,6 @@ public class JSONObject {
 	public void Add(string str) {
 		Add(CreateStringObject(str));
 	}
-    public void Add(string[] str) {
-        Add(CreateStringListObject(str));
-    }
 	public void Add(AddJSONConents content) {
 		Add(Create(content));
 	}
@@ -441,11 +423,8 @@ public class JSONObject {
 	}
 	public void AddField(string name, string val) {
 		AddField(name, CreateStringObject(val));
-    }
-    public void AddField(string name, string[] vals) {
-        AddField(name, CreateStringListObject(vals));
-    }
-    public void AddField(string name, JSONObject obj) {
+	}
+	public void AddField(string name, JSONObject obj) {
 		if(obj) {		//Don't do anything if the object is null
 			if(type != Type.OBJECT) {
 				if(keys == null)
@@ -462,20 +441,6 @@ public class JSONObject {
 			list.Add(obj);
 		}
 	}
-    public void SetField(string name, string val) {
-        if (HasField(name)) {
-            list.Remove(this[name]);
-            keys.Remove(name);
-        }
-        AddField(name, val);
-    }
-    public void SetField(string name, string[] val) {
-        if (HasField(name)) {
-            list.Remove(this[name]);
-            keys.Remove(name);
-        }
-        AddField(name, obj);
-    }
 	public void SetField(string name, bool val) { SetField(name, Create(val)); }
 	public void SetField(string name, float val) { SetField(name, Create(val)); }
 	public void SetField(string name, int val) { SetField(name, Create(val)); }
@@ -564,23 +529,9 @@ public class JSONObject {
 		}
 		if(fail != null) fail.Invoke(name);
 	}
-    public void GetField(ref string[] field, string name) {
-        GetField(ref field, name, null);
-    }
-    public void GetField(ref string[] field, string name, FieldNotFound fail) {
-        if (type == Type.ARRAY) {
-            int index = keys.IndexOf(name);
-            if (index >= 0) {
-                field = list[index].colors;
-                return;
-            }
-        }
-        if (fail != null)
-            fail.Invoke(name);
-    }
-
-    // Default parameters fix
-    public void GetField(string name, GetFieldResponse response) { GetField(name, response, null); }
+	
+	// Default parameters fix
+	public void GetField(string name, GetFieldResponse response) { GetField(name, response, null); }
 	public void GetField(string name, GetFieldResponse response, FieldNotFound fail) {
 		if(response != null && type == Type.OBJECT) {
 			int index = keys.IndexOf(name);
@@ -714,10 +665,9 @@ public class JSONObject {
 	#region STRINGIFY
 	const float maxFrameTime = 0.008f;
 	static readonly Stopwatch printWatch = new Stopwatch();
-    private string[] colors;
 
-    // Default parameters fix
-    IEnumerable StringifyAsync(int depth, StringBuilder builder) {	return StringifyAsync(depth, builder, false); }
+	// Default parameters fix
+	IEnumerable StringifyAsync(int depth, StringBuilder builder) {	return StringifyAsync(depth, builder, false); }
 	IEnumerable StringifyAsync(int depth, StringBuilder builder, bool pretty) {	//Convert the JSONObject into a string
 		//Profiler.BeginSample("JSONprint");
 		if(depth++ > MAX_DEPTH) {

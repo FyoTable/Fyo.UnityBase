@@ -20,7 +20,7 @@ public class TicTacToePlayer : GamePlayer {
     public void Update() {
         if (Gamepad != null && isMyTurn) {
             for (int b = 0; b < 9; b++) {
-                if (Gamepad.inputs[b] != 0 && GameManager.Grid[b].CurrentMark == 0) {
+                if (Gamepad.GetButton(b.ToString()) && GameManager.Grid[b].CurrentMark == 0) {
                     GameManager.SetCell(b, Xs ? 1 : 2);
                 }
             }

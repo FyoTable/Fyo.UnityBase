@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
 
-public class TicTacToeGame : SocketGamepadManager {
+public class TicTacToeGame : FyoApplication {
     public GameObject GridObject;
     public List<TicTacToeCell> Grid = new List<TicTacToeCell>();
 
     int PlayerTurn = 1;
     int Winner = -1;
 
-    protected override void OnStart() {
-        LocalPlayers = new GamePlayer[2];
-        LocalPlayers[0] = new TicTacToePlayer();
-        LocalPlayers[1] = new TicTacToePlayer();
+    public TicTacToeGame() : base() {
+        MaxPlayers = 2;
     }
 
-    public override void HandleGamepadHandshake(SocketIOEvent e) {
+    protected override void OnStart() {
+        Reset();
+    }
+
+    protected override void HandleGamepadHandshake(SocketIOEvent e) {
         SGHandshakeMsg handshakeMsg = new SGHandshakeMsg(e.data);
         SocketGamepad gamepad;
         if (LocalPlayers[0].Gamepad == null) {
@@ -25,15 +27,10 @@ public class TicTacToeGame : SocketGamepadManager {
             gamepad = CreateGamepad(LocalPlayers[1], handshakeMsg.PlayerId);
         }
 
-        if (InputIndicatorPrefab != null) {
-            SocketGamepadTestIndicator Tester = ((GameObject)Instantiate(InputIndicatorPrefab)).GetComponent<SocketGamepadTestIndicator>();
-            Tester.Gamepad = gamepad;
-        }
-
         Debug.Log("[Tic Tac Toe] Gamepad Handshake: " + gamepad.PlayerId.ToString());
     }
 
-    public override void HandleGamepadDisconnected(SocketIOEvent e) {
+    protected override void HandleGamepadDisconnected(SocketIOEvent e) {
         int gid = 0;
         e.data.GetField(ref gid, "PlayerId");
         if (gid > -1 && gid < Gamepads.Count) {
@@ -113,25 +110,19 @@ public class TicTacToeGame : SocketGamepadManager {
         }
         LocalPlayers[0].Ready = LocalPlayers[1].Ready = false;
     }
-
-    public override void Start() {
-        base.Start();
-        dAddGamepad = OnAddGamepad;
-        Reset();
-    }
-
-    public void OnAddGamepad(int GamepadId) {
+    
+    protected override void OnAddGamepad(int PlayerId) {
         if (!((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.activeSelf) {
             if (((TicTacToePlayer)LocalPlayers[0]).PlayerIcon != null) {
                 ((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.SetActive(true);
             }
-            LocalPlayers[0].Gamepad = GetGamepad(GamepadId);
+            LocalPlayers[0].Gamepad = GetGamepad(PlayerId);
             //TODO: Feedback to controller - Show "Ready" For selection
         } else if (!((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.activeSelf) {
             if (((TicTacToePlayer)LocalPlayers[1]).PlayerIcon != null) {
                 ((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.SetActive(true);
             }
-            LocalPlayers[1].Gamepad = GetGamepad(GamepadId);
+            LocalPlayers[1].Gamepad = GetGamepad(PlayerId);
             //TODO: Feedback to controller - Show "Ready" For selection
         } else {
             Debug.Log("[Tic Tac Toe] Only two players can play Tic Tac Toe, fuck off.");
@@ -175,7 +166,7 @@ public class TicTacToeGame : SocketGamepadManager {
     }
     
     protected void SetReady(int mark) {
-        if (mark < LocalPlayers.Length && LocalPlayers[mark] != null) {
+        if (mark < LocalPlayers.Count && LocalPlayers[mark] != null) {
             if(LocalPlayers[mark] != null)
                 LocalPlayers[mark].Ready = true;
         }

@@ -4,17 +4,34 @@ using UnityEngine;
 
 public class SocketGamepadTestIndicator : MonoBehaviour {
     public SocketGamepad Gamepad;
-    public List<GameObject> Indicators = new List<GameObject>(20);
+    public List<GameObject> Indicators = new List<GameObject>(18);
 
-    int i = 0;
+    public float[] InputDebug = new float[18];
+
+    private void Start() {
+        for (b = 0; b < 10; b++) {
+            Indicators[b].SetActive(false);
+        }
+    }
+
+    int a = 0, b = 0;
+    bool button = false;
+    float axis = 0.0f;
+    GameObject Indicator;
     private void LateUpdate() {
         if (Gamepad != null) {
-            if (Gamepad.inputs.Length == 20) {
-                i = 0;
-                for (; i < 10; i++)
-                    Indicators[i].SetActive(Gamepad.inputs[i] > 0);
-                for (; i < 20; i++)
-                    Indicators[i].transform.localPosition = (Indicators[i].transform.right * Gamepad.inputs[i]);
+            for (b = 0; b < 10; b++) {
+                Indicator = Indicators[b];
+                button = Gamepad.GetButton("button " + b.ToString());
+                Indicator.SetActive(button);
+                InputDebug[b] = button ? 1.0f : 0.0f;
+            }
+
+            for (a = 0; a < 8; a++) {
+                Indicator = Indicators[10 + a];
+                axis = Gamepad.GetAxis("axis " + a.ToString());
+                Indicator.transform.localPosition = Indicator.transform.right * axis;
+                InputDebug[10 + a] = axis;
             }
         }
     }

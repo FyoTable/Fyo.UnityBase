@@ -52,21 +52,26 @@ public class ZombieSurvivorPlayer : GamePlayer {
         }
     }
 
+    protected float CtrlMove = 0.0f;
+    protected float CtrlTurn = 0.0f;
+    protected bool CtrlUseWeapon = false;
+    protected bool CtrlUseItem = false;
+
     protected virtual void UpdateInput() {
         if (Gamepad != null) {
-            body.MoveRotation(body.rotation + (Gamepad.GetAxis(0) * Time.deltaTime));
+            body.MoveRotation(body.rotation + (CtrlTurn * Time.deltaTime));
 
-            if (!Mathf.Approximately(Gamepad.GetAxis(1), 0.0f)) {
-                body.MovePosition(transform.position + (transform.right * Gamepad.GetAxis(1) * Time.deltaTime));
-                anim.SetFloat("Walk", Gamepad.GetAxis(1));
+            if (!Mathf.Approximately(CtrlMove, 0.0f)) {
+                body.MovePosition(transform.position + (transform.right * CtrlMove * Time.deltaTime));
+                anim.SetFloat("Walk", CtrlMove);
             } else {
                 anim.SetFloat("Walk", 0);
             }
 
-            if (Gamepad.GetButton(0))
+            if (CtrlUseWeapon)
                 Fire();
 
-            if (Gamepad.GetButton(1)) {
+            if (CtrlUseItem) {
                 //Throw grenade, use item, whatever?
             }
         }

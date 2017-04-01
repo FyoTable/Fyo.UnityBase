@@ -13,7 +13,6 @@ using SocketIO;
 /// HandleAppHandshake -- Handshake Accepted by Node.js Server
 /// HandleGamepadHandshake -- New gamepad from Node.js Server
 /// HandleGamepadUpdate -- Frame update for an individual SocketGamepad from Node.js Server
-///   Add GamepadUpdateDelegates to process Gamepad Events
 /// HandleGamepadDisconnected -- Gamepad Disconnection notification from Node.js Server
 /// </summary>
 [RequireComponent(typeof(SocketIOComponent))]
@@ -26,10 +25,7 @@ public class FyoApplication : MonoBehaviour {
     protected SocketIOComponent socket;
     protected List<GamePlayer> LocalPlayers = new List<GamePlayer>();
     protected float ServerLatency;
-
-    protected delegate void GamepadUpdateDelegate(SocketIOEvent evt);
-    protected Dictionary<string, GamepadUpdateDelegate> GamepadInputMap = new Dictionary<string, GamepadUpdateDelegate>();
-
+    
     protected virtual void OnStart() {
     }
 
@@ -177,6 +173,12 @@ public class FyoApplication : MonoBehaviour {
         //Identify App to Node Server
         Debug.Log("Handshake Accepted, sending Game Info\n" + GameInfoMsg.ToString());
         socket.Emit("AppHandshakeMsg", GameInfoMsg);
+
+        SGPayloadMsg Payload = new SGPayloadMsg();
+        Payload.Filename = "BaseController.zip";
+        Payload.Serialize();
+        
+        socket.Emit("SGPayloadMsg", Payload);
     }
 
     protected void HandleDisconnected(SocketIOEvent e) {

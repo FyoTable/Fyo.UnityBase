@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePlayer : MonoBehaviour {
     public SocketGamepad Gamepad;
-    public int PlayerID;
+    public int PlayerId;
     public bool Ready = false;
     
     public virtual void SetInput(JSONObject InputMsg) {        

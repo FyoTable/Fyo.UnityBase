@@ -8,6 +8,14 @@ using UnityEngine;
 public class SGPayloadMsg : JSONObject {
     public string Filename = "index.zip";
 
+    public SGPayloadMsg(string filename) : base() {
+        Filename = filename;
+        Serialize();
+    }
+
+    public SGPayloadMsg() : base() {
+    }
+
     // Use this for initialization
     void Start() {
         AddField("BinaryData", new JSONObject());

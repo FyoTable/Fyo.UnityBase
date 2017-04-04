@@ -20,7 +20,19 @@ public class SocketGamepad : MonoBehaviour {
 
     public bool GetButton(string InputName) {
         return InputData.HasField(InputName) ?
-            InputData.GetField(InputName).b:
+            InputData.GetField(InputName).b :
             false;
+    }
+
+    public string GetString(string InputName) {
+        return InputData.HasField(InputName) ?
+            InputData.GetField(InputName).str :
+            string.Empty;
+    }
+
+    public JSONObject GetObject(string InputName) {
+        return InputData.HasField(InputName) ?
+            InputData.GetField(InputName) :
+            null;
     }
 }

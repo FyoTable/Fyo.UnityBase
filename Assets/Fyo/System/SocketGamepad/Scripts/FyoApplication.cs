@@ -19,7 +19,6 @@ using SocketIO;
 public class FyoApplication : MonoBehaviour {
     public string AppIdString = "Unknown";
     public int MaxPlayers = 8;
-    public GameObject PlayerPrefab;
     public Dictionary<SocketGamepad, GamePlayer> Gamepads = new Dictionary<SocketGamepad, GamePlayer>();
 
     protected SocketIOComponent socket;
@@ -61,7 +60,7 @@ public class FyoApplication : MonoBehaviour {
     #endregion
 
     #region Utility
-    protected int GetGamepadIdFromEvent(SocketIOEvent e) {
+    protected int GetPlayerIdFromEvent(SocketIOEvent e) {
         int r = -1;
         if (e.data != null) {
             if (e.data.HasField("PlayerId")) {
@@ -69,7 +68,7 @@ public class FyoApplication : MonoBehaviour {
                     Debug.LogError("[SocketGamepadManager] Invalid Id Field: \"" + e.data.GetField("PlayerId").ToString() + "\"");
                 }
             } else {
-                Debug.LogError("[SocketGamepadManager] Id missing in message");
+                Debug.LogError("[SocketGamepadManager] PlayerId missing in message");
             }
         } else {
             Debug.LogError("[SocketGamepadManager] Data missing in Message");
@@ -81,15 +80,16 @@ public class FyoApplication : MonoBehaviour {
     #endregion
 
     #region Gamepad Management
-    protected int AddPlayerToFreeSlot() {
+    protected virtual int AddPlayerToFreeSlot() {
         if (LocalPlayers.Count < MaxPlayers) {
-            GameObject PlayerObj = Instantiate(PlayerPrefab);
+            GameObject PlayerObj = new GameObject("Player " + LocalPlayers.Count.ToString());
+
             if (PlayerObj != null) {
-                GamePlayer Player = PlayerObj.GetComponent<GamePlayer>();
+                GamePlayer Player = PlayerObj.AddComponent<GamePlayer>();
                 if (Player != null) {
-                    Player.PlayerID = LocalPlayers.Count;
+                    Player.PlayerId = LocalPlayers.Count;
                     LocalPlayers.Add(Player);
-                    return Player.PlayerID;
+                    return Player.PlayerId;
                 } else {
                     Debug.LogError("Player Prefab is missing a GamePlayer derived Component!");
                 }
@@ -153,10 +153,10 @@ public class FyoApplication : MonoBehaviour {
         }
     }
     
-    public SocketGamepad GetGamepad(int GamepadId) {
+    public SocketGamepad GetGamepad(int PlayerId) {
         Dictionary<SocketGamepad, GamePlayer>.Enumerator e = Gamepads.GetEnumerator();
         while (e.MoveNext()) {
-            if (e.Current.Key.PlayerId == GamepadId)
+            if (e.Current.Key.PlayerId == PlayerId)
                 return e.Current.Key;
         }
 
@@ -173,12 +173,8 @@ public class FyoApplication : MonoBehaviour {
         //Identify App to Node Server
         Debug.Log("Handshake Accepted, sending Game Info\n" + GameInfoMsg.ToString());
         socket.Emit("AppHandshakeMsg", GameInfoMsg);
-
-        SGPayloadMsg Payload = new SGPayloadMsg();
-        Payload.Filename = "BaseController.zip";
-        Payload.Serialize();
         
-        socket.Emit("SGPayloadMsg", Payload);
+        socket.Emit("SGPayloadMsg", new SGPayloadMsg("BaseController.zip"));
     }
 
     protected void HandleDisconnected(SocketIOEvent e) {

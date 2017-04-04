@@ -54,6 +54,29 @@ public class TicTacToeGame : FyoApplication {
         }
     }
 
+    protected override int AddPlayerToFreeSlot() {
+        if (LocalPlayers.Count < MaxPlayers) {
+            GameObject PlayerObj = new GameObject("Player " + LocalPlayers.Count.ToString());
+
+            if (PlayerObj != null) {
+                TicTacToePlayer Player = PlayerObj.AddComponent<TicTacToePlayer>();
+                if (Player != null) {
+                    Player.PlayerId = LocalPlayers.Count;
+                    Player.Xs = (Player.PlayerId == 0);
+                    LocalPlayers.Add(Player);
+                    return Player.PlayerId;
+                } else {
+                    Debug.LogError("Player Prefab is missing a GamePlayer derived Component!");
+                }
+            } else {
+                Debug.LogError("Player Prefab is missing!");
+            }
+        }
+
+        Debug.Log("No available Player Slots");
+        return -1;
+    }
+
     public int CheckWinner() {
         if (//Horizontal
             (Grid[0].X.activeSelf && Grid[1].X.activeSelf && Grid[2].X.activeSelf) ||

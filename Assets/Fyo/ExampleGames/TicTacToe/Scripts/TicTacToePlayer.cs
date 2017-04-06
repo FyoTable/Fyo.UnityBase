@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TicTacToePlayer : GamePlayer {
+public class TicTacToePlayer : FyoPlayer {
     TicTacToeGame GameManager;
     public bool Xs = false;
     public bool isMyTurn = false;

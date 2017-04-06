@@ -19,10 +19,10 @@ using SocketIO;
 public class FyoApplication : MonoBehaviour {
     public string AppIdString = "Unknown";
     public int MaxPlayers = 8;
-    public Dictionary<SocketGamepad, GamePlayer> Gamepads = new Dictionary<SocketGamepad, GamePlayer>();
+    public Dictionary<SocketGamepad, FyoPlayer> Gamepads = new Dictionary<SocketGamepad, FyoPlayer>();
 
     protected SocketIOComponent socket;
-    protected List<GamePlayer> LocalPlayers = new List<GamePlayer>();
+    protected List<FyoPlayer> LocalPlayers = new List<FyoPlayer>();
     protected float ServerLatency;
     
     protected virtual void OnStart() {
@@ -85,13 +85,13 @@ public class FyoApplication : MonoBehaviour {
             GameObject PlayerObj = new GameObject("Player " + LocalPlayers.Count.ToString());
 
             if (PlayerObj != null) {
-                GamePlayer Player = PlayerObj.AddComponent<GamePlayer>();
+                FyoPlayer Player = PlayerObj.AddComponent<FyoPlayer>();
                 if (Player != null) {
                     Player.PlayerId = LocalPlayers.Count;
                     LocalPlayers.Add(Player);
                     return Player.PlayerId;
                 } else {
-                    Debug.LogError("Player Prefab is missing a GamePlayer derived Component!");
+                    Debug.LogError("Player Prefab is missing a FyoPlayer derived Component!");
                 }
             } else {
                 Debug.LogError("Player Prefab is missing!");
@@ -113,7 +113,7 @@ public class FyoApplication : MonoBehaviour {
 
     protected virtual void OnAddGamepad(int PlayerId) {}
 
-    public SocketGamepad CreateGamepad(GamePlayer player, int PlayerId) {
+    public SocketGamepad CreateGamepad(FyoPlayer player, int PlayerId) {
         SocketGamepad gamepad = gameObject.AddComponent<SocketGamepad>();
         gamepad.PlayerId = PlayerId;
         gamepad.LocalId = GetNextFreePlayerSlotIndex();
@@ -146,7 +146,7 @@ public class FyoApplication : MonoBehaviour {
 
     protected void RenumberConnectedGamepads() {
         int id = 0;
-        Dictionary<SocketGamepad, GamePlayer>.Enumerator en = Gamepads.GetEnumerator();
+        Dictionary<SocketGamepad, FyoPlayer>.Enumerator en = Gamepads.GetEnumerator();
         while (en.MoveNext()) {
             en.Current.Key.LocalId = id;
             id++;
@@ -154,7 +154,7 @@ public class FyoApplication : MonoBehaviour {
     }
     
     public SocketGamepad GetGamepad(int PlayerId) {
-        Dictionary<SocketGamepad, GamePlayer>.Enumerator e = Gamepads.GetEnumerator();
+        Dictionary<SocketGamepad, FyoPlayer>.Enumerator e = Gamepads.GetEnumerator();
         while (e.MoveNext()) {
             if (e.Current.Key.PlayerId == PlayerId)
                 return e.Current.Key;

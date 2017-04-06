@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayer : MonoBehaviour {
+public class FyoPlayer : MonoBehaviour {
     public SocketGamepad Gamepad;
     public int PlayerId;
     public bool Ready = false;

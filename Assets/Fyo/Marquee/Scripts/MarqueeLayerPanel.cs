@@ -29,8 +29,8 @@ public class MarqueeLayerPanel : MonoBehaviour {
         VidPlayer.url = ResourcePath;
         VidPlayer.targetMaterialRenderer = ImageRender;
     }
-    
-	void Start () {
+
+    public void Load() {
         MatProp = new MaterialPropertyBlock();
         ImageRender = GetComponent<SpriteRenderer>();
 
@@ -38,11 +38,11 @@ public class MarqueeLayerPanel : MonoBehaviour {
             default:
             case MarqueeResourceType.Image:
                 break;
-            case MarqueeResourceType.Video: 
+            case MarqueeResourceType.Video:
                 SetupVideoPlayer();
                 try {
                     VidPlayer.clip = Resources.Load<VideoClip>(ResourcePath);
-                } catch(UnityException e) {
+                } catch (UnityException e) {
                     Debug.LogError(e.Message);
                     Debug.LogWarning("Destroying " + name);
                     Destroy(gameObject);
@@ -51,7 +51,7 @@ public class MarqueeLayerPanel : MonoBehaviour {
                 VidPlayer.prepareCompleted += VideoPrepared;
                 VidPlayer.Prepare();
                 break;
-            case MarqueeResourceType.WebVideo: 
+            case MarqueeResourceType.WebVideo:
                 SetupVideoPlayer();
                 VidPlayer.url = ResourcePath;
                 VidPlayer.prepareCompleted += VideoPrepared;
@@ -71,6 +71,9 @@ public class MarqueeLayerPanel : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    void Start () {
+    }
+
     private void VideoPrepared(VideoPlayer source) {
         Prepared = true;
         if (VidPlayer != source)
@@ -79,7 +82,6 @@ public class MarqueeLayerPanel : MonoBehaviour {
     }
 
     public void Fade(bool FadeIn) {
-
         //Setup material for fade
         MatProp.SetFloat("_Alpha", FadeIn ? 0.0f : 1.0f);
         ImageRender.SetPropertyBlock(MatProp);
@@ -100,5 +102,22 @@ public class MarqueeLayerPanel : MonoBehaviour {
         }
 
         iTween.FadeTo(gameObject, FadeIn ? 1.0f : 0.0f, FadeDuration);
+    }
+
+    public void LoadFromJSON(JSONObject j) {
+        if (j.HasField("ResourcePath") && j.HasField("ResourceType")) {
+            if(j["ResourcePath"].IsString)
+                ResourcePath = j["ResourcePath"].str;
+            if (j["ResourceType"].IsNumber)
+                ResourceType = (MarqueeResourceType)j["ResourceType"].n;
+            Load();
+        }
+    }
+
+    public JSONObject ToJSON() {
+        JSONObject j = new JSONObject();
+        j.AddField("ResourcePath", ResourcePath);
+        j.AddField("ResourceType", (int)ResourceType);
+        return j;
     }
 }

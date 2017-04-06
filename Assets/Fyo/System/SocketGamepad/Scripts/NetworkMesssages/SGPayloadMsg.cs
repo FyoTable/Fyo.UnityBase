@@ -22,11 +22,12 @@ public class SGPayloadMsg : JSONObject {
     }
 
     public void Serialize() {
-        if (File.Exists(Filename)) {
-            byte[] data = File.ReadAllBytes(Filename);
+        string FilePath = Fyo.Paths.Controllers + Filename;
+        if (File.Exists(FilePath)) {
+            byte[] data = File.ReadAllBytes(FilePath);
             string strData = System.Convert.ToBase64String(data);
             SetField("BinaryData", JSONObject.CreateStringObject(strData));
         } else
-            Debug.LogWarning("\"" + Filename + "\" does not exist!");
+            Debug.LogWarning(FilePath + " does not exist!");
     }
 }

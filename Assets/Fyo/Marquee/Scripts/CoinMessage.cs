@@ -48,11 +48,10 @@ public class CoinMessage : JSONObject {
     public bool SaveToFile(string Filename) {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file;
-        string FilePath = Application.persistentDataPath + "/" + Filename;
-        if (!File.Exists(FilePath))
-            file = File.Open(FilePath, FileMode.Create);
-        else
-            file = File.Open(FilePath, FileMode.Truncate);
+        string FilePath = Fyo.Paths.Configuration + Filename;
+        file = File.Open(FilePath,  FileMode.OpenOrCreate,
+                                    FileAccess.ReadWrite,
+                                    FileShare.None);
 
         if (!file.CanWrite)
             return false;
@@ -64,12 +63,14 @@ public class CoinMessage : JSONObject {
     }
 
     public bool LoadFromFile(string Filename) {
-        string FilePath = Application.persistentDataPath + "/" + Filename;
+        string FilePath = Fyo.Paths.Configuration + Filename;
         if (!File.Exists(FilePath)) 
              return false;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(FilePath, FileMode.Open);
+        FileStream file = File.Open(FilePath,   FileMode.OpenOrCreate,
+                                                FileAccess.ReadWrite,
+                                                FileShare.None);
         Coin coin = (Coin)bf.Deserialize(file);
         SetField("Credits", coin.Credits);
         _credits = coin.Credits;

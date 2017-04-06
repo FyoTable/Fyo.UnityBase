@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class ZombieSurvivorPlayer : GamePlayer {
+public class ZombieSurvivorPlayer : FyoPlayer {
     protected Animator anim;
     protected Rigidbody2D body;
     protected CircleCollider2D coll;

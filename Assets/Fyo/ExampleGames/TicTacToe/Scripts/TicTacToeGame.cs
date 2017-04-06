@@ -66,7 +66,7 @@ public class TicTacToeGame : FyoApplication {
                     LocalPlayers.Add(Player);
                     return Player.PlayerId;
                 } else {
-                    Debug.LogError("Player Prefab is missing a GamePlayer derived Component!");
+                    Debug.LogError("Player Prefab is missing a FyoPlayer derived Component!");
                 }
             } else {
                 Debug.LogError("Player Prefab is missing!");

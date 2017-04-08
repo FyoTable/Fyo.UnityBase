@@ -12,8 +12,6 @@ public class SocketGamepad : MonoBehaviour {
 
     public JSONObject InputData = new JSONObject();
 
-    public string Controller = "base_controller";
-
     public float GetAxis(string InputName) {
         return InputData.HasField(InputName) ? 
             InputData.GetField(InputName).n : 

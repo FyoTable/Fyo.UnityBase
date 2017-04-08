@@ -41,7 +41,8 @@ using System.IO;
 public abstract class FyoApplication : MonoBehaviour {
     public string AppIdString = "Unknown";
     public int MaxPlayers = 8;
-    public string[] Payloads = new string[] { };
+    public string DefaultController = string.Empty;
+    public string ControllerPayload = string.Empty;
 
     public Dictionary<SocketGamepad, FyoPlayer> ActiveGamepads = new Dictionary<SocketGamepad, FyoPlayer>();
     public List<SocketGamepad> Gamepads = new List<SocketGamepad>();
@@ -108,18 +109,23 @@ public abstract class FyoApplication : MonoBehaviour {
     /// </summary>
     /// <param name="PlayerId">SocketGamepad Identifier as it relates to the SocketGamepadManager</param>
     /// <returns></returns>
-    public SocketGamepad GetOrCreateGamepad(int PlayerId) {
+    public SocketGamepad GetOrReconnectGamepad(int PlayerId) {
+        SocketGamepad gamepad = null;
         if (Gamepads.Count > 0) {
             for (int g = 0; g < Gamepads.Count; g++) {
+                //TODO: Handle Same Gamepad different device id?
                 if (Gamepads[g].PlayerId == PlayerId) {
-                    return Gamepads[g];
+                    gamepad = Gamepads[g];
                 }
             }
         }
 
-        SocketGamepad gamepad = gameObject.AddComponent<SocketGamepad>();
-        gamepad.PlayerId = PlayerId;
-        Gamepads.Add(gamepad);
+        if (gamepad == null) {
+            gamepad = gameObject.AddComponent<SocketGamepad>();
+            gamepad.PlayerId = PlayerId;
+            Gamepads.Add(gamepad);
+        }
+
         OnGamepadPluggedIn(gamepad);
         return gamepad;
     }
@@ -212,19 +218,14 @@ public abstract class FyoApplication : MonoBehaviour {
     /// </summary>
     /// <param name="e"></param>
     protected void HandleConnectedToSGServer(SocketIOEvent e) {
-        AppHandshakeMsg GameInfoMsg = new AppHandshakeMsg();
-        GameInfoMsg.AppIDString = AppIdString;
-        GameInfoMsg.BinaryData = null;
-
-        string ControllerPath = Fyo.Paths.Controllers + Fyo.Files.BaseController;
+        string Payload = string.Empty;
+        string ControllerPath = Fyo.Paths.Controllers + ControllerPayload;
         if (File.Exists(ControllerPath)) {
             byte[] data = File.ReadAllBytes(ControllerPath);
-            string strData = System.Convert.ToBase64String(data);
-            GameInfoMsg.BinaryData = strData;
-        } else
-            Debug.LogWarning(ControllerPath + " does not exist!");
-        
-        GameInfoMsg.Serialize();
+            Payload = Convert.ToBase64String(data);
+        }
+
+        AppHandshakeMsg GameInfoMsg = new AppHandshakeMsg(AppIdString, Payload, DefaultController);
         OnConnected();
 
         //Identify App to Node Server
@@ -259,9 +260,10 @@ public abstract class FyoApplication : MonoBehaviour {
     protected void HandleGamepadHandshake(SocketIOEvent e) {
         //Upon Handshake, create the Gamepad
         SGHandshakeMsg gamepadHandshake = new SGHandshakeMsg(e.data);
-        SocketGamepad gamepad = GetOrCreateGamepad(gamepadHandshake.PlayerId);
+        SocketGamepad gamepad = GetOrReconnectGamepad(gamepadHandshake.PlayerId);
+        Debug.Log("Gamepad Handshake: " + e.data);
+
 #if UNITY_EDITOR
-        Debug.Log(e.data);
         if (InputIndicatorPrefab != null) {
             Debug.LogWarning("Showing Indicator Prefab | This will not occur in a standalone build");
             SocketGamepadTestIndicator Tester = Instantiate(InputIndicatorPrefab).GetComponent<SocketGamepadTestIndicator>();
@@ -269,7 +271,6 @@ public abstract class FyoApplication : MonoBehaviour {
             Indicators.Add(gamepad.PlayerId, Tester.gameObject);
         }
 #endif
-        Debug.Log("Gamepad Handshake: " + gamepad.PlayerId.ToString());
     }
 
     #region Local Testing
@@ -294,15 +295,14 @@ public abstract class FyoApplication : MonoBehaviour {
 
     //Change Input array to Dictionary of named delegates instead of an array of 20 floats
     protected void HandleGamepadUpdate(SocketIOEvent e) {
-        int PlayerId = -1;
-        e.data.GetField(ref PlayerId, "PlayerId");
+        SGUpdateMsg UpdateMsg = new SGUpdateMsg(e.data);
 
-        if (PlayerId > -1) {
-            SocketGamepad gamepad = GetGamepad(PlayerId);
+        if (UpdateMsg.PlayerId > -1) {
+            SocketGamepad gamepad = GetGamepad(UpdateMsg.PlayerId);
             if (gamepad == null) {
-                Debug.Log("Controller " + PlayerId + " sending Updates without handshake!");
+                Debug.Log("Controller " + UpdateMsg.PlayerId + " sending Updates without handshake!");
             } else {
-                gamepad.InputData = e.data.GetField("InputData");
+                gamepad.InputData = UpdateMsg.Data;
                 OnUpdateGamepad(gamepad);
             }
         } else {

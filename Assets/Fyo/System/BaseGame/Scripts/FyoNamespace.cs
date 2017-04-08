@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fyo {
+    public static class Files {
+        public static string BaseController {
+            get {
+                return "BaseController.zip";
+            }
+        }
+    }
+
     public static class Paths {
         public static string Configuration {
             get {

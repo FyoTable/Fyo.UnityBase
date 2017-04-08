@@ -57,7 +57,7 @@ public class ZombieSurvivorPlayer : FyoPlayer {
     protected bool CtrlUseWeapon = false;
     protected bool CtrlUseItem = false;
 
-    protected virtual void UpdateInput() {
+    protected void UpdateInput() {
         if (Gamepad != null) {
             body.MoveRotation(body.rotation + (CtrlTurn * Time.deltaTime));
 

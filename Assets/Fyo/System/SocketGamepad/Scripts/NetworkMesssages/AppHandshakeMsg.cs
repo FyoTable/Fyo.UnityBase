@@ -8,21 +8,26 @@ public class AppHandshakeMsg : JSONObject {
     public string AppIDString = "Marquee";
     public string BinaryData = null;
 
-    public AppHandshakeMsg() {
+    public AppHandshakeMsg() : base() {
         AddField("AppIDString", AppIDString);
         AddField("BinaryData", BinaryData);
     }
+
+    public AppHandshakeMsg(string idStr, string binStr) : base() {
+        AppIDString = idStr;
+        binStr = BinaryData;
+        Serialize();
+    }
     
-    public AppHandshakeMsg(JSONObject clone) {
+    public AppHandshakeMsg(JSONObject clone) : base() {
         clone.GetField(ref AppIDString, "AppIDString");
         clone.GetField(ref BinaryData, "BinaryData");
         Serialize();
     }
 
     public void Serialize() {
-        SetField("AppIDString", JSONObject.CreateStringObject(AppIDString));
-        SetField("BinaryData", JSONObject.CreateStringObject(BinaryData));
-        //SetField("Colors");
+        SetField("AppIDString", CreateStringObject(AppIDString));
+        SetField("BinaryData", CreateStringObject(BinaryData));
     }
 
     public void Deserialize() {

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 namespace UnityEngine.EventSystems {
     [AddComponentMenu("Socket Gamepad Input Module")]
     public class SocketGamepadInputModule : BaseInputModule {
-        public SocketGamepad Gamepad;
-        public Dictionary<string, float> InputMap = new Dictionary<string, float>();
+        public SocketGamepad Gamepad = null;
+        public SocketGamepadInputModuleData InputData = new SocketGamepadInputModuleData();
 
         private float m_NextAction = 0.0f;
         
@@ -85,11 +85,16 @@ namespace UnityEngine.EventSystems {
                 return false;
 
             var data = GetBaseEventData();
-            if (Gamepad.InputData.GetField("Horizonal").n > 0.0f)
-                ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
-            
-            if (Gamepad.InputData.GetField("Vertical").n > 0.0f)
-                ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.cancelHandler);
+            if (Gamepad != null) {
+                InputData.Clone(Gamepad.InputData);
+
+                if (InputData.Horizontal > 0.0f)
+                    ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.submitHandler);
+
+                if (InputData.Vertical > 0.0f)
+                    ExecuteEvents.Execute(eventSystem.currentSelectedGameObject, data, ExecuteEvents.cancelHandler);
+            }
+
             return data.used;
         }
                 
@@ -99,10 +104,15 @@ namespace UnityEngine.EventSystems {
         private bool SendMoveEventToSelectedObject() {
             float time = Time.unscaledTime;
 
-            if (Mathf.Approximately(Gamepad.InputData.GetField("Horizontal").f, 0.0f) && 
-                Mathf.Approximately(Gamepad.InputData.GetField("Vertical").f, 0.0f) && 
-                !Gamepad.InputData.GetField("Select").b && 
-                !Gamepad.InputData.GetField("Cancel").b) {
+
+
+            if (Gamepad != null)
+                InputData.Clone(Gamepad.InputData);
+
+            if (Mathf.Approximately(InputData.Horizontal, 0.0f) && 
+                Mathf.Approximately(InputData.Vertical, 0.0f) && 
+                !InputData.Confirm && 
+                !InputData.Cancel) {
                 //Clear wait time if everything is released
                 m_NextAction = 0.0f;
             }
@@ -111,7 +121,7 @@ namespace UnityEngine.EventSystems {
                 return false;
             
             // Debug.Log(m_ProcessingEvent.rawType + " axis:" + m_AllowAxisEvents + " value:" + "(" + x + "," + y + ")");
-            var axisEventData = GetAxisEventData(Gamepad.InputData.GetField("Horizontal").f, Gamepad.InputData.GetField("Vertical").f, 0.0f);
+            var axisEventData = GetAxisEventData(InputData.Horizontal, InputData.Vertical, 0.0f);
 
             if (!Mathf.Approximately(axisEventData.moveVector.x, 0f)
                 || !Mathf.Approximately(axisEventData.moveVector.y, 0f)) {

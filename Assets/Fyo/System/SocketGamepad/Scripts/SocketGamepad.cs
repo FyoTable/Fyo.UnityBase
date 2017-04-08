@@ -8,9 +8,11 @@ public class SocketGamepad : MonoBehaviour {
     public int PlayerId = -1;
 
     public const int GamepadInputCount = 20;
-    public int LocalId = 0;
+    public int LocalId = -1;
 
     public JSONObject InputData = new JSONObject();
+
+    public string Controller = "base_controller";
 
     public float GetAxis(string InputName) {
         return InputData.HasField(InputName) ? 

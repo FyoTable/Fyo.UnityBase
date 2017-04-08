@@ -27,6 +27,11 @@ public class MarqueeMenu : MonoBehaviour {
     protected MarqueeLayerPanel PreviousPanel = null;
     public List<MarqueeLayerPanel> Panels = new List<MarqueeLayerPanel>();
     public void Cycle() {
+        if (Panels.Count == 0) {
+            Debug.LogError("No Panels Present");
+            return;
+        }
+
         if (CurrentPanel == null) {
             //No Current Panel, this is our first
             CurrentPanel = Panels[0];

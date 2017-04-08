@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
+using System.IO;
+using System.Linq;
+using System;
 
 public class TicTacToeGame : FyoApplication {
     public GameObject GridObject;
     public List<TicTacToeCell> Grid = new List<TicTacToeCell>();
+    public GameObject XPlayerTile;
+    public GameObject OPlayerTile;
 
     int PlayerTurn = 1;
     int Winner = -1;
@@ -14,28 +19,70 @@ public class TicTacToeGame : FyoApplication {
         MaxPlayers = 2;
     }
 
+
     protected override void OnStart() {
+        if (XPlayerTile == null)
+            Debug.LogError("X Player Tile GameObject is null!");
+        if (OPlayerTile == null)
+            Debug.LogError("O Player Tile GameObject is null!");
         Reset();
     }
 
+    protected override void AssignExtraHandlers() {
+    }
+
+    /*
+    protected override void HandleConnectedToSGServer(SocketIOEvent e) {
+        string ControllerPath = Fyo.Paths.Controllers + "TicTacToe.zip";
+        string strData = string.Empty;
+        if (File.Exists(ControllerPath)) {
+            byte[] data = File.ReadAllBytes(ControllerPath);
+            strData = System.Convert.ToBase64String(data);
+        } else {
+            Debug.LogWarning(ControllerPath + " does not exist!");
+        }
+
+        AppHandshakeMsg GameInfoMsg = new AppHandshakeMsg(AppIdString, strData);
+
+        //Identify App to Node Server
+        Debug.Log("Handshake Accepted, sending Game Info: " + GameInfoMsg.ToString());
+        socket.Emit("AppHandshakeMsg", GameInfoMsg);
+    }
+    */
+
+    /*
     protected override void HandleGamepadHandshake(SocketIOEvent e) {
         SGHandshakeMsg handshakeMsg = new SGHandshakeMsg(e.data);
-        SocketGamepad gamepad;
-        if (LocalPlayers[0].Gamepad == null) {
-            gamepad = CreateGamepad(LocalPlayers[0], handshakeMsg.PlayerId);
+        SocketGamepad gamepad = null;
+
+        if (XPlayerTile.GetComponent<TicTacToePlayer>() == null) {
+            TicTacToePlayer XPlayer = XPlayerTile.AddComponent<TicTacToePlayer>();
+            //TODO: Send back Update to load Xs controller?
+            gamepad = CreateGamepad(handshakeMsg.PlayerId);
+            XPlayer.Xs = true;
+            XPlayer.Gamepad = gamepad;
+            Debug.Log("X Connected");
+        } else if (OPlayerTile.GetComponent<TicTacToePlayer>() == null) {
+            TicTacToePlayer OPlayer = OPlayerTile.AddComponent<TicTacToePlayer>();
+            //TODO: Send back Update to load Os controller?
+            gamepad = CreateGamepad(handshakeMsg.PlayerId);
+            OPlayer.Xs = false;
+            OPlayer.Gamepad = gamepad;
+            Debug.Log("O Connected");
         } else {
-            gamepad = CreateGamepad(LocalPlayers[1], handshakeMsg.PlayerId);
+            //Extra Player
         }
 
         Debug.Log("[Tic Tac Toe] Gamepad Handshake: " + gamepad.PlayerId.ToString());
     }
-
+    */
+    /*
     protected override void HandleGamepadDisconnected(SocketIOEvent e) {
-        int gid = 0;
-        e.data.GetField(ref gid, "PlayerId");
-        if (gid > -1 && gid < Gamepads.Count) {
-            SocketGamepad gamepad = GetGamepad(gid);
-            Debug.Log("[Tic Tac Toe] Removing Gamepad " + gid.ToString() + " and player.");
+        int PlayerId = 0;
+        e.data.GetField(ref PlayerId, "PlayerId");
+        if (PlayerId > -1 && PlayerId < ActiveGamepads.Count) {
+            SocketGamepad gamepad = GetGamepad(PlayerId);
+            Debug.Log("[Tic Tac Toe] Removing Gamepad " + PlayerId + " and player.");
 
             if (LocalPlayers[0].Gamepad == gamepad) {
                 ((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.SetActive(false);
@@ -47,35 +94,14 @@ public class TicTacToeGame : FyoApplication {
                 LocalPlayers[1].Gamepad = null;
             }
 
-            Gamepads.Remove(gamepad);
+            ActiveGamepads.Remove(gamepad);
+            OnRemoveGamepad(gamepad);
             Destroy(gamepad);
 
-            RenumberConnectedGamepads();
+            RenumberActiveGamepads();
         }
     }
-
-    protected override int AddPlayerToFreeSlot() {
-        if (LocalPlayers.Count < MaxPlayers) {
-            GameObject PlayerObj = new GameObject("Player " + LocalPlayers.Count.ToString());
-
-            if (PlayerObj != null) {
-                TicTacToePlayer Player = PlayerObj.AddComponent<TicTacToePlayer>();
-                if (Player != null) {
-                    Player.PlayerId = LocalPlayers.Count;
-                    Player.Xs = (Player.PlayerId == 0);
-                    LocalPlayers.Add(Player);
-                    return Player.PlayerId;
-                } else {
-                    Debug.LogError("Player Prefab is missing a FyoPlayer derived Component!");
-                }
-            } else {
-                Debug.LogError("Player Prefab is missing!");
-            }
-        }
-
-        Debug.Log("No available Player Slots");
-        return -1;
-    }
+    */
 
     public int CheckWinner() {
         if (//Horizontal
@@ -131,27 +157,99 @@ public class TicTacToeGame : FyoApplication {
             cell.X.SetActive(false);
             cell.O.SetActive(false);
         }
-        LocalPlayers[0].Ready = LocalPlayers[1].Ready = false;
-    }
-    
-    protected override void OnAddGamepad(int PlayerId) {
-        if (!((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.activeSelf) {
-            if (((TicTacToePlayer)LocalPlayers[0]).PlayerIcon != null) {
-                ((TicTacToePlayer)LocalPlayers[0]).PlayerIcon.SetActive(true);
-            }
-            LocalPlayers[0].Gamepad = GetGamepad(PlayerId);
-            //TODO: Feedback to controller - Show "Ready" For selection
-        } else if (!((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.activeSelf) {
-            if (((TicTacToePlayer)LocalPlayers[1]).PlayerIcon != null) {
-                ((TicTacToePlayer)LocalPlayers[1]).PlayerIcon.SetActive(true);
-            }
-            LocalPlayers[1].Gamepad = GetGamepad(PlayerId);
-            //TODO: Feedback to controller - Show "Ready" For selection
-        } else {
-            Debug.Log("[Tic Tac Toe] Only two players can play Tic Tac Toe, fuck off.");
+        foreach (TicTacToePlayer player in LocalPlayers) {
+            if(player != null)
+                player.Ready = false;
         }
     }
-    
+
+    protected override void OnConnected() {
+    }
+
+    protected override void OnHandshake(AppHandshakeMsg handshakeMsg) {
+    }
+
+    protected override void OnDisconnected() {
+    }
+
+    protected override void OnGamepadPluggedIn(SocketGamepad gamepad) {
+        if (XPlayerTile.GetComponent<TicTacToePlayer>() == null) {
+            TicTacToePlayer XPlayer = XPlayerTile.AddComponent<TicTacToePlayer>();
+            //TODO: Send back Update to load Xs controller?
+            XPlayer.Xs = true;
+            XPlayer.Gamepad = gamepad;
+            Debug.Log("X Connected");
+        } else if (OPlayerTile.GetComponent<TicTacToePlayer>() == null) {
+            TicTacToePlayer OPlayer = OPlayerTile.AddComponent<TicTacToePlayer>();
+            //TODO: Send back Update to load Os controller?
+            OPlayer.Xs = false;
+            OPlayer.Gamepad = gamepad;
+            Debug.Log("O Connected");
+        } else {
+            //Extra Player
+        }
+    }
+
+    public enum CurrentModeType {
+        WaitForPlayers,
+        WaitForReady,
+        Playing
+    }
+    public CurrentModeType CurrentMode = CurrentModeType.WaitForPlayers;
+    protected override void OnUpdateGamepad(SocketGamepad gamepad) {
+        switch (CurrentMode) {
+            case CurrentModeType.WaitForPlayers:
+                break;
+            case CurrentModeType.WaitForReady:
+                //Check if player is present
+                if (!ActiveGamepads.ContainsKey(gamepad))
+                    if (!ActiveGamepads[gamepad].Ready)
+                        ActiveGamepads[gamepad].Ready = true;
+
+                //Check if all players have readied
+                if (ActiveGamepads.Values.Count(p => p.Ready) >= 2) {
+                    StartGame();
+                    OnUpdateGamepad(gamepad);
+                }
+                break;
+
+            case CurrentModeType.Playing:
+                //Gamepad disappeared?
+                if (ActiveGamepads.Count < 2) {
+                    Debug.LogError("Gamepad disappeared");
+                    CurrentMode = CurrentModeType.WaitForPlayers;
+                    OnUpdateGamepad(gamepad);
+                    break;
+                }
+
+                if (ActiveGamepads.ContainsKey(gamepad)) {
+                    TicTacToePlayer player = (TicTacToePlayer)ActiveGamepads[gamepad];
+                    if (player.isMyTurn) {
+                        for (int b = 0; b < 9; b++) {
+                            if (gamepad.GetButton(b.ToString()) && Grid[b].CurrentMark == 0) {
+                                SetCell(b, player.Xs ? 1 : 2);
+
+                                //TODO: Fill Update Data with FX Channel Data, or use builtin functions of FyoApplication
+                                SGUpdateMsg UpdateMsg = new SGUpdateMsg(gamepad);
+                                socket.Emit("SGUpdateMsg", UpdateMsg);
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    protected override void OnGamepadUnplugged(SocketGamepad gamepad) {
+        if (ActiveGamepads.ContainsKey(gamepad)) {
+            //Remove from players
+            TicTacToePlayer player = (TicTacToePlayer)ActiveGamepads[gamepad];
+            ActiveGamepads.Remove(gamepad);
+            Destroy(player);
+        }
+    }
+
     protected void StartGame() {
         Debug.Log("[Tic Tac Toe] Starting Game");
         Reset();
@@ -202,57 +300,41 @@ public class TicTacToeGame : FyoApplication {
     }
 
     public void SetCell(int cellid, int mark) {
-        if (Winner >= 0) {
-            //Playing Game
+#if UNITY_EDITOR
+        if (mark == 0) {
+            Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "clear");
+        } else if (mark == 1) {
+            Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "for " + "X");
+        } else if (mark == 2) {
+            Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "for " + "Y");
+        }
+#endif
 
+        if (mark == PlayerTurn) {
             if (mark == 0) {
-                Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "clear");
-            } else if (mark == 1) {
-                Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "for " + "X");
-            } else if (mark == 2) {
-                Debug.Log("[Tic Tac Toe] Marking Cell " + cellid.ToString() + "for " + "Y");
+                Grid[cellid].X.SetActive(false);
+                Grid[cellid].O.SetActive(false);
+            } else if (mark == 1) { //X
+                Grid[cellid].X.SetActive(true);
+                Grid[cellid].O.SetActive(false);
+            } else if (mark == 2) { // Y
+                Grid[cellid].X.SetActive(false);
+                Grid[cellid].O.SetActive(true);
             }
 
-            if (mark == PlayerTurn) {
-                if (mark == 0) {
-                    Grid[cellid].X.SetActive(false);
-                    Grid[cellid].O.SetActive(false);
-                } else if (mark == 1) { //X
-                    Grid[cellid].X.SetActive(true);
-                    Grid[cellid].O.SetActive(false);
-                } else if (mark == 2) { // Y
-                    Grid[cellid].X.SetActive(false);
-                    Grid[cellid].O.SetActive(true);
-                }
-
-                if (PlayerTurn == 1) {
-                    ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = false;
-                    PlayerTurn = 2;
-                    ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = true;
-                } else if (PlayerTurn == 2) {
-                    ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = false;
-                    PlayerTurn = 1;
-                    ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = true;
-                }
-
-                if ((Winner = CheckWinner()) > 0) {
-                    //Winner winner, chicken dinner!
-                    TriggerEndgame();
-                }
+            if (PlayerTurn == 1) {
+                ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = false;
+                PlayerTurn = 2;
+                ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = true;
+            } else if (PlayerTurn == 2) {
+                ((TicTacToePlayer)LocalPlayers[1]).isMyTurn = false;
+                PlayerTurn = 1;
+                ((TicTacToePlayer)LocalPlayers[0]).isMyTurn = true;
             }
-        } else {
-            //Pre/After Game Menu
-            switch (cellid) {
-                case 4:
-                    //Ready
-                    SetReady(mark);
 
-                    if (Gamepads.Count > 1 && LocalPlayers[0].Ready && LocalPlayers[1].Ready) {                       
-                        StartGame();
-                    }
-                    break;
-                default:
-                    break;
+            if ((Winner = CheckWinner()) > 0) {
+                //Winner winner, chicken dinner!
+                TriggerEndgame();
             }
         }
     }

@@ -17,7 +17,7 @@ using Debug = UnityEngine.Debug;
  * Copyright Matt Schoen 2010 - 2013
  */
 
-public class JSONObject : TextAsset {
+public class JSONObject {
 #if POOLING
 	const int MAX_POOL_SIZE = 10000;
 	public static Queue<JSONObject> releaseQueue = new Queue<JSONObject>();

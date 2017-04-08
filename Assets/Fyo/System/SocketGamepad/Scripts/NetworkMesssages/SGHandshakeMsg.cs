@@ -3,23 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SGHandshakeMsg : JSONObject {
+    public string DeviceId;
     public int PlayerId;
-    public bool IsMaster = false;
 
-    public SGHandshakeMsg() {
+    private void Setup() {
         AddField("PlayerId", PlayerId);
+        AddField("DeviceId", CreateStringObject(DeviceId));
     }
 
-    public SGHandshakeMsg(JSONObject clone) {
-        clone.GetField(ref PlayerId, "PlayerId");
+    public SGHandshakeMsg() : base() {
+        Setup();
+    }
+
+    public SGHandshakeMsg(JSONObject clone) : base() {
+        Setup();
+        Clone(clone);
+    }
+
+    public void Clone(JSONObject clone) {
+        if (clone.HasField("PlayerId"))
+            clone.GetField(ref PlayerId, "PlayerId");
+        if(clone.HasField("DeviceId"))
+            clone.GetField(ref DeviceId, "DeviceId");
         Serialize();
     }
 
     public void Serialize() {
         SetField("PlayerId", PlayerId);
+        SetField("DeviceId", CreateStringObject(DeviceId));
     }
 
     public void Deserialize() {
         GetField(ref PlayerId, "PlayerId");
+        GetField(ref DeviceId, "DeviceId");
     }
 }

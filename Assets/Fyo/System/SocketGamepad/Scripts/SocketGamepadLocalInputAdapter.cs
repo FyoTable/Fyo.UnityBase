@@ -36,8 +36,7 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
             SGHandshakeMsg HandshakeMsg = new SGHandshakeMsg();
             HandshakeMsg.PlayerId = SocketPlayerId;
             HandshakeMsg.Serialize();
-
-            GamepadManager.InjectGamepadHandshake(new SocketIO.SocketIOEvent("SGHandshakeMsg", HandshakeMsg));
+            GamepadManager.InjectGamepadHandshake(HandshakeMsg);
         } else {
             Debug.LogWarning("Local Input is not configured for a valid Local Gamepad");
         }
@@ -62,10 +61,10 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
             }
 
             UpdateMsg.PlayerId = SocketPlayerId;
-            UpdateMsg.InputData = InputData;
+            UpdateMsg.Data = InputData;
             UpdateMsg.Serialize();
 
-            GamepadManager.InjectGamepadUpdate(new SocketIO.SocketIOEvent("SGUpdateMsg", UpdateMsg));
+            GamepadManager.InjectGamepadUpdate(UpdateMsg);
         }
     }
 }

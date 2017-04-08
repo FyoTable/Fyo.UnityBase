@@ -2,37 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Common update message sent to and from Controllers
+/// Inbound traffic from controllers defines the Input values
+/// 
+/// </summary>
 public class SGUpdateMsg : JSONObject {
     public int PlayerId = -1;
-    public JSONObject InputData = new JSONObject();
+    public string MessageType = "";
+    public JSONObject Data = new JSONObject();
+
+    private void Setup() {
+        AddField("PlayerId", -1);
+        AddField("MessageType", "");
+        AddField("data", Data);
+    }
 
     public SGUpdateMsg() : base() {
-        AddField("PlayerId", -1);
-
-        //Allocate Axes
-        for (int a = 0; a < 9; a++)
-            InputData.AddField("axis " + a.ToString(), 0.0f);
-
-        //Allocate Buttons
-        for (int b = 0; b < 10; b++)
-            InputData.AddField("button " + b.ToString(), false);
-
-        AddField("InputData", InputData);
+        Setup();
     }
 
     public SGUpdateMsg(SocketGamepad gamepad) : base() {
+        Setup();
         PlayerId = gamepad.PlayerId;
-        InputData = gamepad.InputData;
+        MessageType = "input";
+        Data = gamepad.InputData;
+        Serialize();
+    }
+
+    public SGUpdateMsg(JSONObject clone) : base() {
+        Setup();
+        if(clone.HasField("PlayerId"))
+            clone.GetField(ref PlayerId, "PlayerId");
+        if (clone.HasField("MessageType"))
+            clone.GetField(ref MessageType, "MessageType");
+        if (clone.HasField("data"))
+            Data = clone["data"];
         Serialize();
     }
     
     public void Serialize() {
         SetField("PlayerId", PlayerId);
-        SetField("InputData", InputData);
+        SetField("MessageType", CreateStringObject(MessageType));
+        SetField("data", Data);
     }
 
     void Deserialize() {
         PlayerId = int.Parse(GetField("PlayerId").str);
-        InputData = GetField("InputData");
+        MessageType = GetField("MessageType").str;
+        Data = this["data"];
     }
 }

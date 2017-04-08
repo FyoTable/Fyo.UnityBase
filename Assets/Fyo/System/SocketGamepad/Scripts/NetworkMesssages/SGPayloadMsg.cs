@@ -7,16 +7,21 @@ using UnityEngine;
 
 public class SGPayloadMsg : JSONObject {
     public string Filename = "index.zip";
+    public string BinaryData = string.Empty;
+
+    private void Setup() {
+        AddField("BinaryData", new JSONObject());
+    }
+
+    public SGPayloadMsg() : base() {
+        Setup();
+    }
 
     public SGPayloadMsg(string filename) : base() {
         Filename = filename;
         Serialize();
     }
-
-    public SGPayloadMsg() : base() {
-    }
-
-    // Use this for initialization
+    
     void Start() {
         AddField("BinaryData", new JSONObject());
     }
@@ -25,8 +30,8 @@ public class SGPayloadMsg : JSONObject {
         string FilePath = Fyo.Paths.Controllers + Filename;
         if (File.Exists(FilePath)) {
             byte[] data = File.ReadAllBytes(FilePath);
-            string strData = System.Convert.ToBase64String(data);
-            SetField("BinaryData", JSONObject.CreateStringObject(strData));
+            BinaryData = System.Convert.ToBase64String(data);
+            SetField("BinaryData", JSONObject.CreateStringObject(BinaryData));
         } else
             Debug.LogWarning(FilePath + " does not exist!");
     }

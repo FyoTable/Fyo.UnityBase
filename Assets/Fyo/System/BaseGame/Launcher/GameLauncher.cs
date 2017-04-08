@@ -29,10 +29,10 @@ public class GameLauncher : MonoBehaviour {
         }
 
 #elif UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
-        Process foo = new Process();
-        foo.StartInfo.FileName = AppName;
-        foo.StartInfo.Arguments = Path;
-        foo.Start();
+        Process process = new Process();
+        process.StartInfo.FileName = AppName;
+        process.StartInfo.Arguments = Path;
+        process.Start();
 #elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
 #elif UNITY_STANDALONE_LINUX // || UNITY_EDITOR_LINUX Maybe eventually?
 #endif

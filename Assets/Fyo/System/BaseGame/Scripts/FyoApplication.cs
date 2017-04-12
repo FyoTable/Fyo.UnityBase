@@ -123,6 +123,7 @@ public abstract class FyoApplication : MonoBehaviour {
         if (gamepad == null) {
             gamepad = gameObject.AddComponent<SocketGamepad>();
             gamepad.PlayerId = PlayerId;
+            
             Gamepads.Add(gamepad);
         }
 

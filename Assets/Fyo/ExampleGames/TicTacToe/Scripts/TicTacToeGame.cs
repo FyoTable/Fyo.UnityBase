@@ -125,18 +125,18 @@ public class TicTacToeGame : FyoApplication {
             XPlayer.Xs = true;
             XPlayer.Gamepad = gamepad;
             XPlayer.Gamepad.LocalId = 0;
+            XPlayer.PlayerIcon.SetActive(true);
             ActiveGamepads.Add(gamepad, XPlayer);
             XPlayer.InputWait = DateTime.Now.Ticks + (InputWaitMs * TimeSpan.TicksPerMillisecond);
             Debug.Log("X Connected");
-            //SendGameState(XPlayer.Gamepad);
         } else if (OPlayer.Gamepad == null) {
             OPlayer.Xs = false;
             OPlayer.Gamepad = gamepad;
             OPlayer.Gamepad.LocalId = 1;
+            OPlayer.PlayerIcon.SetActive(true);
             Debug.Log("O Connected");
             ActiveGamepads.Add(gamepad, OPlayer);
             OPlayer.InputWait = DateTime.Now.Ticks + (InputWaitMs * TimeSpan.TicksPerMillisecond);
-            //SendGameState(XPlayer.Gamepad);
         } else {
             //Reconnected?
             if (CurrentMode == CurrentModeType.Playing && (XPlayer.Gamepad == gamepad || OPlayer.Gamepad == gamepad)) {
@@ -202,6 +202,7 @@ public class TicTacToeGame : FyoApplication {
         if (ActiveGamepads.ContainsKey(gamepad)) {
             //Remove from players
             TicTacToePlayer player = (TicTacToePlayer)ActiveGamepads[gamepad];
+            player.PlayerIcon.SetActive(false);
             ActiveGamepads.Remove(gamepad);
             LocalPlayers.Remove(player);
             player.Gamepad = null;
@@ -269,8 +270,6 @@ public class TicTacToeGame : FyoApplication {
         SetCellOnController.MessageType = "cell";
         SetCellOnController.Data = CellState;
         SetCellOnController.Serialize();
-
-        Debug.Log("Sending Cell Update: " + SetCellOnController.ToString());
 
         socket.Emit("SGUpdateMsg", SetCellOnController);
     }

@@ -5,34 +5,36 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class SGPayloadMsg : JSONObject {
-    public string Filename = "index.zip";
-    public string BinaryData = string.Empty;
+namespace Fyo {
+    public class SGPayloadMsg : JSONObject {
+        public string Filename = "index.zip";
+        public string BinaryData = string.Empty;
 
-    private void Setup() {
-        AddField("BinaryData", new JSONObject());
-    }
+        private void Setup() {
+            AddField("BinaryData", new JSONObject());
+        }
 
-    public SGPayloadMsg() : base() {
-        Setup();
-    }
+        public SGPayloadMsg() : base() {
+            Setup();
+        }
 
-    public SGPayloadMsg(string filename) : base() {
-        Filename = filename;
-        Serialize();
-    }
-    
-    void Start() {
-        AddField("BinaryData", new JSONObject());
-    }
+        public SGPayloadMsg(string filename) : base() {
+            Filename = filename;
+            Serialize();
+        }
 
-    public void Serialize() {
-        string FilePath = Fyo.Paths.Controllers + Filename;
-        if (File.Exists(FilePath)) {
-            byte[] data = File.ReadAllBytes(FilePath);
-            BinaryData = System.Convert.ToBase64String(data);
-            SetField("BinaryData", JSONObject.CreateStringObject(BinaryData));
-        } else
-            Debug.LogWarning(FilePath + " does not exist!");
+        void Start() {
+            AddField("BinaryData", new JSONObject());
+        }
+
+        public void Serialize() {
+            string FilePath = Fyo.DefaultPaths.Controllers + Filename;
+            if (File.Exists(FilePath)) {
+                byte[] data = File.ReadAllBytes(FilePath);
+                BinaryData = System.Convert.ToBase64String(data);
+                SetField("BinaryData", JSONObject.CreateStringObject(BinaryData));
+            } else
+                Debug.LogWarning(FilePath + " does not exist!");
+        }
     }
 }

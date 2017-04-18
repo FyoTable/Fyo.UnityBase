@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fyo;
 
 /// <summary>
-/// Adapter for Real (tm) gamepads to translate to SocketGamepad message format
+/// Adapter for real gamepads (PS4, XBox 360, XBox One, etc) to translate to SocketGamepad 
+/// Uses the default (SGUpdateMsg) message format as used in 'default_controller'
+/// 
 /// Primarily for local testing to remove the need for the Node.js server
-/// for basic gameplay tests.
+/// for basic gameplay tests with the default controllers.
+/// 
+/// If you need to specialize this it is recommended to copy and build your
+/// own version of this class as it relates to your own use of SocketGamepad
 /// </summary>
 public class SocketGamepadLocalInputAdapter : MonoBehaviour {
     FyoApplication GamepadManager;
-    
     JSONObject InputData = new JSONObject();
 
     protected static string PlayerStr = "player ";

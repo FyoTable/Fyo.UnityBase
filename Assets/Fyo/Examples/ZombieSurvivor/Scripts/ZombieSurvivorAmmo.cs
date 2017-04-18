@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fyo;
 
-public class ZombieSurvivorAmmo : ObjectPool {
-    public Sprite Icon;
-    public int Available = 0;
+namespace ExampleZombieSurvivor {
+    public class WeaponAmmunition : ObjectPool {
+        public Sprite Icon;
+        public int Available = 0;
+    }
 }

@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fyo {
-    public static class Files {
-        public static string BaseController {
-            get {
-                return "BaseController.zip";
-            }
-        }
-    }
-
-    public static class Paths {
+    public static class DefaultPaths {
         public static string Configuration {
             get {
 #if UNITY_EDITOR
@@ -42,6 +34,5 @@ namespace Fyo {
                 return Configuration + "Downloads/";
             }
         }
-
     }
 }

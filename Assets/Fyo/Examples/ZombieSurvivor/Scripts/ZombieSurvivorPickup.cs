@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
-public class ZombieSurvivorPickup : MonoBehaviour {
-    public int Quanity = 1;
+namespace ExampleZombieSurvivor {
+    [RequireComponent(typeof(CircleCollider2D))]
+    public class ItemPickup : MonoBehaviour {
+        public int Quanity = 1;
+    }
 }

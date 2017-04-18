@@ -30,26 +30,31 @@ using System.Collections;
 using UnityEngine;
 using SocketIO;
 
-public class SocketGamepadConnectionTest : MonoBehaviour {
-    private SocketIOComponent socket;
+namespace Fyo {
+    /// <summary>
+    /// Serves as a basic connection test for a connection to Fyo Server
+    /// </summary>
+    public class SocketGamepadConnectionTest : MonoBehaviour {
+        private SocketIOComponent socket;
 
-    public void Start() {
-        GameObject go = GameObject.Find("SocketIO");
-        socket = go.GetComponent<SocketIOComponent>();
+        public void Start() {
+            GameObject go = GameObject.Find("SocketIO");
+            socket = go.GetComponent<SocketIOComponent>();
 
-        socket.On("connect", LogThroughput);
-        socket.On("disconnect", LogThroughput);
+            socket.On("connect", LogThroughput);
+            socket.On("disconnect", LogThroughput);
 
-        Debug.Log("Connecting to " + socket.url);
-        socket.Connect();
-    }
+            Debug.Log("Connecting to " + socket.url);
+            socket.Connect();
+        }
 
-    public void LogThroughput(SocketIOEvent e) {
-        Debug.Log("[SocketIO] Data: " + e.name + " " + e.data);
-    }
+        public void LogThroughput(SocketIOEvent e) {
+            Debug.Log("[SocketIO] Data: " + e.name + " " + e.data);
+        }
 
-    private void OnDestroy() {
-        if (socket != null) {
+        private void OnDestroy() {
+            if (socket != null) {
+            }
         }
     }
 }

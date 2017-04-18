@@ -307,9 +307,9 @@ namespace SocketIO
 			
 			try {
 				ws.Send(encoder.Encode(packet));
-			} catch(SocketIOException ex) {
+			} catch(SocketIOException e) {
 				#if SOCKET_IO_DEBUG
-				debugMethod.Invoke(ex.ToString());
+				debugMethod.Invoke(e.ToString());
 				#endif
 			}
 		}
@@ -398,9 +398,9 @@ namespace SocketIO
 			foreach (Action<SocketIOEvent> handler in this.handlers[ev.name]) {
 				try{
 					handler(ev);
-				} catch(Exception ex){
+				} catch(Exception e){
 					#if SOCKET_IO_DEBUG
-					debugMethod.Invoke(ex.ToString());
+					debugMethod.Invoke(e.ToString());
 					#endif
 				}
 			}

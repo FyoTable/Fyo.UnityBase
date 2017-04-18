@@ -2,5 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieSurvivorZombie : ZombieSurvivorPlayer {
+namespace ExampleZombieSurvivor {
+    public class ZombieSurvivorZombie : SurvivalPlayer {
+    }
 }

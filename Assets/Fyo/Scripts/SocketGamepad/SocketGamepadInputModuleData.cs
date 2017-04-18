@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//
 public class SocketGamepadInputModuleData : JSONObject {
     public float Horizontal = 0.0f;
     public float Vertical = 0.0f;

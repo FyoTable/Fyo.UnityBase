@@ -1,8 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fyo;
 
+//Must remain in this namespace to work correctly
 namespace UnityEngine.EventSystems {
     [AddComponentMenu("Socket Gamepad Input Module")]
+    /// <summary>
+    /// Serves as an example of an InputModule which interfaces with Unity3Ds UI system
+    /// This uses the default 'default_controller' configuration and SGInputMsg formatted
+    /// with SocketGamepadInputModuleData
+    /// </summary>
     public class SocketGamepadInputModule : BaseInputModule {
         public SocketGamepad Gamepad = null;
         public SocketGamepadInputModuleData InputData = new SocketGamepadInputModuleData();
@@ -103,9 +110,7 @@ namespace UnityEngine.EventSystems {
         /// </summary>
         private bool SendMoveEventToSelectedObject() {
             float time = Time.unscaledTime;
-
-
-
+            
             if (Gamepad != null)
                 InputData.Clone(Gamepad.InputData);
 

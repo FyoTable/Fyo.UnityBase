@@ -17,9 +17,9 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
     FyoApplication GamepadManager;
     JSONObject InputData = new JSONObject();
 
-    protected static string PlayerStr = "player ";
-    protected static string ButtonStr = " button ";
-    protected static string AxisStr = " axis ";
+    protected static string PlayerStr = "Joy";
+    protected static string ButtonStr = "Button";
+    protected static string AxisStr = "Axis";
 
     public int LocalInputIndex = 0;
 

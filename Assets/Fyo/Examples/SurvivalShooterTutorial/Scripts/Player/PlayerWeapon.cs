@@ -6,7 +6,8 @@ namespace SurvivalShooterExampleGame {
     /// Replaces PlayerShooting from Suvival Shooter Tutorial
     /// </summary>
     public class PlayerWeapon : MonoBehaviour {
-        FyoPlayer Player;
+        PlayerMovement Player;
+        PlayerHealth playerHealth;
 
         public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
@@ -26,7 +27,8 @@ namespace SurvivalShooterExampleGame {
 
 
         void Awake() {
-            Player = GetComponentInParent<FyoPlayer>();
+            Player = GetComponentInParent<PlayerMovement>();
+            playerHealth = GetComponentInParent<PlayerHealth>();
             // Create a layer mask for the Shootable layer.
             shootableMask = LayerMask.GetMask("Shootable");
 
@@ -44,7 +46,7 @@ namespace SurvivalShooterExampleGame {
             timer += Time.deltaTime;
 
             // If the Fire1 button is being press and it's time to fire...
-            if (Player != null && Player.Gamepad != null) {
+            if (Player != null && Player.Gamepad != null && playerHealth.currentHealth > 0) {
                 Vector3 AimAxes = new Vector3(Player.Gamepad.GetAxis("axis 2"), 0.0f, FlipAimYAxis ? -Player.Gamepad.GetAxis("axis 3") : Player.Gamepad.GetAxis("axis 3"));
 
                 Quaternion r = transform.rotation;

@@ -5,6 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_CompletedAssets/Scenes/Level 01 5.x.unity
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Fyo/Examples/SurvivalShooterTutorial/SurvivalShooterSG.unity
+    guid: 277fcee0dabda0c4eb88566740335283

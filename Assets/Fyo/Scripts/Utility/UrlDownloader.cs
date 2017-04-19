@@ -36,7 +36,7 @@ namespace Fyo {
 #else
     public static Regex UnixRegex = new Regex(@"\([^\0 !$`&*()+]\|\\\(\ |\!|\$|\`|\&|\*|\(|\)|\+\)\)\+", RegexOptions.Multiline);
     public static bool FilePathIsValid(string FilePath) {
-        return WindowsRegex.IsMatch(FilePath);
+        return UnixRegex.IsMatch(FilePath);
     }
 #endif
 

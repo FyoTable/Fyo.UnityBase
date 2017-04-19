@@ -15,7 +15,7 @@ namespace Fyo {
         Vector3 AxisAlignedMinimumBound = Vector3.zero;
         Vector3 AxisAlignedMaximumBound = Vector3.zero;
 
-        private void LateUpdate() {
+        void Update() {
             WorldCenterOfObjects = Vector3.zero;
             AxisAlignedMinimumBound = Vector3.zero;
             AxisAlignedMaximumBound = Vector3.zero;

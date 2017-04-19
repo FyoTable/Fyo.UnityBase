@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fyo Game Table - Base Controller</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Base Fyo css -->
+    <link rel="stylesheet" href="/fyogametable/dist/fyo.css">    
+    <!-- Specific to this controller -->
+    <link rel="stylesheet" href="./base_styles.css">
+</head>
+<body>
+    <div id="mainContainer">
+        <!-- Specific to this controller -->
+        <h1 id="text-message" class="text-lcd" style="position: absolute; top: 0px; right: 0px; left: 0px; z-index: 0">PLAYER</h1>
+    </div>
+
+    <!-- Socket.io is required for FyoGameTable -->
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- Three.js is only required if using FyoGameTable.3DControls -->
+    <script src="/threejs/build/three.min.js"></script>
+    <script src="/threejs/examples/js/loaders/OBJLoader.js"></script>
+
+    <!-- Minified Fyo Scripts -->
+    <script src="/fyogametable/dist/fyo.min.js"></script>
+
+    <!-- Controller specific setup -->
+    <script>
+
+        var playerId = 0;
+
+        var connecter = new FYO.FyoConnection('SurvivalShooter');
+        connecter.AddVisualLatency();
+        
+        ////////////////////////////////
+        ///  MessageType Handlers
+        ////////////////////////////////
+
+        function GameStarted(data) {
+            playerId = data.PlayerId;
+            if (data.Master) {
+                document.getElementById('text-message').innerText = 'MASTER ' + data.PlayerId;
+            } else {
+                document.getElementById('text-message').innerText = 'PLAYER ' + data.PlayerId;
+            }
+        }
+
+        function MasterControl(data) {
+            document.getElementById('text-message').innerText = 'MASTER ' + playerId;
+        }
+
+        // Messages from the Node Server (which originated from the game)
+        connecter.on('SGUpdateMsg', function (data) {
+            switch (data.MessageType) {
+                case 'GameStarted':
+                    GameStarted(data.data);
+                    break;
+                case 'MasterControl':
+                    MasterControl(data.data);
+                    break;
+            }
+        });
+
+
+        ////////////////////////////////
+        ///  Control Rendering using FyoGameTable API
+        ////////////////////////////////
+
+        var thumbstickLeftRenderer = new FYO.ThumbStick3D(connecter, {
+            side: false,
+            container: 'mainContainer',
+            onmoved: function (data) {
+                connecter.Send('LeftThumb', data);
+            }
+        });
+
+        var thumbstickRightRenderer = new FYO.ThumbStick3D(connecter, {
+            side: true,
+            container: 'mainContainer',
+            onmoved: function (data) {
+                connecter.Send('RightThumb', data);
+            }
+        });
+
+        var buttonRenderer = new FYO.Button3D(connecter, {
+            container: 'mainContainer',
+            image: '/fyogametable/assets/imgs/Blue_B.png',
+            ondown: function () {
+                connecter.Send('B', true);
+            },
+            onup: function () {
+                connecter.Send('B', false);
+            }
+        });
+
+        var buttonRenderer2 = new FYO.Button3D(connecter, {
+            container: 'mainContainer',
+            image: '/fyogametable/assets/imgs/Red_A.png',
+            ondown: function () {
+                connecter.Send('A', true);
+            },
+            onup: function () {
+                connecter.Send('A', false);
+            }
+        });
+
+        var buttonRenderer3 = new FYO.Button3D(connecter, {
+            container: 'mainContainer',
+            model: '/fyogametable/assets/objs/SquareButtonTex.obj',
+            image: '/fyogametable/assets/imgs/Grey_Start.png',
+            ondown: function () {
+                connecter.Send('Start', true);
+            },
+            onup: function () {
+                connecter.Send('Start', false);
+            }
+        });
+
+        var buttonRenderer4 = new FYO.Button3D(connecter, {
+            container: 'mainContainer',
+            model: '/fyogametable/assets/objs/SquareButtonTex.obj',
+            image: '/fyogametable/assets/imgs/Grey_Select.png',
+            ondown: function () {
+                connecter.Send('Select', true);
+            },
+            onup: function () {
+                connecter.Send('Select', false);
+            }
+        });
+
+
+        // TODO: clean this up so it's more re-usable within the control itself
+        function Reposition() {
+            var width = (window.innerWidth / 2) / 3;
+            buttonRenderer.Set('60%', '65%', width, width);
+            buttonRenderer2.Set('80%', '75%', width, width);
+            buttonRenderer3.Set('45%', '90%', width / 2.0, width / 2.0);
+            buttonRenderer4.Set('55%', '90%', width / 2.0, width / 2.0);
+        }
+        Reposition();
+        window.addEventListener('resize', Reposition, false);
+    </script>
+
+</body>
+</html>

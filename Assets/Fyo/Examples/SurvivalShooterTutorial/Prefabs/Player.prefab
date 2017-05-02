@@ -3998,6 +3998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d12684d22e6eb8478c5886aae2d30bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FyoApp: {fileID: 0}
   Gamepad: {fileID: 0}
   PlayerId: 0
   Ready: 0
@@ -4063,8 +4064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1309dc8b28ce233468f3edf5bcd94767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
+  startingHealth: 100000
+  currentHealth: 100000
   healthSlider: {fileID: 114698467356780374}
   damageImage: {fileID: 114385218661277084}
   deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}

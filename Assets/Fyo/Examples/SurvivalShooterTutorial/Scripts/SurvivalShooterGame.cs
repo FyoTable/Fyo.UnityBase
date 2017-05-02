@@ -40,6 +40,7 @@ namespace SurvivalShooterExampleGame {
                     //Delay input tracking for 1000 ms
                     Player.InputWait = DateTime.Now.Ticks + (5000 * TimeSpan.TicksPerMillisecond);
                     CamFrame.TrackedObjects.Add(Player.gameObject);
+                    Debug.Log("Added Player to Framing " + Player.name);
                 }
             } else {
                 //TODO: Send state message to controller
@@ -104,6 +105,7 @@ namespace SurvivalShooterExampleGame {
 
                 if (pObj != null) {
                     if ((p = pObj.GetComponent<PlayerMovement>()) != null) {
+                        p.FyoApp = this;
                         p.Gamepad = gamepad;
                     }
                 } else {

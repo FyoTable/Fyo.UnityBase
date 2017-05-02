@@ -29,6 +29,7 @@ namespace InputTestApp {
             if (!ActiveGamepads.ContainsKey(gamepad)) {
                 GameObject PlayerObj = Instantiate(PlayerPrefab);
                 InputTestPlayer Player = PlayerObj.GetComponent<InputTestPlayer>();
+                Player.FyoApp = this;
                 Player.Gamepad = gamepad;
                 Player.PlayerId = ActiveGamepads.Count;
                 ActiveGamepads.Add(gamepad, Player);

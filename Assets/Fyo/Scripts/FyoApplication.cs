@@ -294,6 +294,8 @@ namespace Fyo {
         protected void HandleGamepadUpdate(SocketIOEvent e) {
             SGUpdateMsg UpdateMsg = new SGUpdateMsg(e.data);
 
+            Debug.Log(DateTime.Now.ToString() + " Gamepad " + UpdateMsg.PlayerId.ToString() + UpdateMsg.Data);
+
             if (UpdateMsg.PlayerId > -1) {
                 SocketGamepad gamepad = GetGamepad(UpdateMsg.PlayerId);
                 if (gamepad == null) {

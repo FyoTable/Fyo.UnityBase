@@ -66,6 +66,9 @@ namespace SurvivalShooterExampleGame {
 
             // Play the hurt sound effect.
             playerAudio.Play();
+            
+            //TODO: Send Vibration
+            
 
             // If the player has lost all it's health and the death flag hasn't been set yet...
             if (currentHealth <= 0 && !isDead) {

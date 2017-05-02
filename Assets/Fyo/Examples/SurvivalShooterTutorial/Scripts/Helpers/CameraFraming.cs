@@ -60,7 +60,7 @@ namespace Fyo {
                     float Width = Mathf.Abs((AxisAlignedMaximumBound.x - AxisAlignedMinimumBound.x) * 0.5f);
                     float Depth = Mathf.Abs((AxisAlignedMaximumBound.z - AxisAlignedMinimumBound.z) * 0.5f);
                     camera.orthographicSize = Mathf.Clamp(Mathf.Min(Width, Depth), MinimumOrthoSize, Mathf.Max(Width, Depth));
-                    Debug.Log("Ortho " + camera.orthographicSize);
+                    //Debug.Log("Ortho " + camera.orthographicSize);
                 }
             }
         }

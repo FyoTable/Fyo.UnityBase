@@ -125,6 +125,7 @@ namespace ExampleTicTacToe {
         protected override void OnGamepadPluggedIn(SocketGamepad gamepad) {
             if (XPlayer.Gamepad == null) {
                 XPlayer.Xs = true;
+                XPlayer.FyoApp = this;
                 XPlayer.Gamepad = gamepad;
                 XPlayer.PlayerIcon.SetActive(true);
                 ActiveGamepads.Add(gamepad, XPlayer);
@@ -132,6 +133,7 @@ namespace ExampleTicTacToe {
                 Debug.Log("X Connected");
             } else if (OPlayer.Gamepad == null) {
                 OPlayer.Xs = false;
+                OPlayer.FyoApp = this;
                 OPlayer.Gamepad = gamepad;
                 OPlayer.PlayerIcon.SetActive(true);
                 Debug.Log("O Connected");
@@ -290,8 +292,6 @@ namespace ExampleTicTacToe {
             MyTurnMsg.PlayerId = PlayerTurn == 1 ? XPlayer.Gamepad.PlayerId : OPlayer.Gamepad.PlayerId;
             MyTurnMsg.MessageType = "turn";
             MyTurnMsg.Data = new JSONObject();
-
-            // MyTurnMsg.Data.AddField("vibrate", PlayerTurn);
             MyTurnMsg.Serialize();
 
             Debug.Log("Sending 'turn': " + MyTurnMsg.ToString());

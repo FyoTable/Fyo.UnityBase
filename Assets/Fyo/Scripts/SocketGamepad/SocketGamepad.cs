@@ -6,7 +6,7 @@ using SocketIO;
 namespace Fyo {
     //Socket.IO Gamepad Connection
     public class SocketGamepad : MonoBehaviour {
-        public int PlayerId = -1;
+        public int SGID = -1;
 
         public const int GamepadInputCount = 20;
         public int LocalId = -1;

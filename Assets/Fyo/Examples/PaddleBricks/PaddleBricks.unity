@@ -436,6 +436,26 @@ Prefab:
       propertyPath: PlayerStart.Array.data[1]
       value: 
       objectReference: {fileID: 1930610620}
+    - target: {fileID: 114664106577538702, guid: 1459af158a6ea174694d85b9476bfe89,
+        type: 2}
+      propertyPath: ControllerPayload
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664106577538702, guid: 1459af158a6ea174694d85b9476bfe89,
+        type: 2}
+      propertyPath: DefaultController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664106577538702, guid: 1459af158a6ea174694d85b9476bfe89,
+        type: 2}
+      propertyPath: MaxPlayers
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114664106577538702, guid: 1459af158a6ea174694d85b9476bfe89,
+        type: 2}
+      propertyPath: AppIdString
+      value: Paddle Bricks
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1459af158a6ea174694d85b9476bfe89, type: 2}
   m_IsPrefabParent: 0

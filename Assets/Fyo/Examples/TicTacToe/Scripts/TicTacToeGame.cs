@@ -190,6 +190,9 @@ namespace ExampleTicTacToe {
             }
         }
 
+        protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
+        }
+
         protected override void OnGamepadUnplugged(SocketGamepad gamepad) {
             if (ActiveGamepads.ContainsKey(gamepad)) {
                 //Remove from players
@@ -203,6 +206,9 @@ namespace ExampleTicTacToe {
                     CurrentMode = CurrentModeType.WaitForPlayers;
                 }
             }
+        }
+
+        protected override void OnGamepadReconnect(SocketGamepad gamepad) {
         }
 
         protected void StartGame() {
@@ -258,7 +264,7 @@ namespace ExampleTicTacToe {
             CellState.AddField("cell", cellid);
             CellState.AddField("state", mark);
 
-            SetCellOnController.PlayerId = -1;
+            SetCellOnController.SGID = -1;
             SetCellOnController.MessageType = "cell";
             SetCellOnController.Data = CellState;
             SetCellOnController.Serialize();
@@ -269,7 +275,7 @@ namespace ExampleTicTacToe {
         protected void SendGameStart() {
             SGUpdateMsg StartGameMsg = new SGUpdateMsg();
 
-            StartGameMsg.PlayerId = XPlayer.Gamepad.PlayerId;
+            StartGameMsg.SGID = XPlayer.Gamepad.SGID;
             StartGameMsg.MessageType = "start";
             StartGameMsg.Data = new JSONObject();
 
@@ -279,7 +285,7 @@ namespace ExampleTicTacToe {
             Debug.Log("Sending 'start': " + StartGameMsg.ToString());
             socket.Emit("SGUpdateMsg", StartGameMsg);
 
-            StartGameMsg.PlayerId = OPlayer.Gamepad.PlayerId;
+            StartGameMsg.SGID = OPlayer.Gamepad.SGID;
             StartGameMsg.Data.SetField("mark", 2);
             StartGameMsg.Serialize();
             Debug.Log("Sending 'start': " + StartGameMsg.ToString());
@@ -289,7 +295,7 @@ namespace ExampleTicTacToe {
         protected void SendMyTurn() {
             SGUpdateMsg MyTurnMsg = new SGUpdateMsg();
 
-            MyTurnMsg.PlayerId = PlayerTurn == 1 ? XPlayer.Gamepad.PlayerId : OPlayer.Gamepad.PlayerId;
+            MyTurnMsg.SGID = PlayerTurn == 1 ? XPlayer.Gamepad.SGID : OPlayer.Gamepad.SGID;
             MyTurnMsg.MessageType = "turn";
             MyTurnMsg.Data = new JSONObject();
             MyTurnMsg.Serialize();
@@ -301,7 +307,7 @@ namespace ExampleTicTacToe {
         protected void SendGameState(SocketGamepad gamepad) {
             SGUpdateMsg GameStateMsg = new SGUpdateMsg();
             TicTacToePlayer tttPlayer = (TicTacToePlayer)ActiveGamepads[gamepad];
-            GameStateMsg.PlayerId = tttPlayer.PlayerId;
+            GameStateMsg.SGID = tttPlayer.PlayerId;
             GameStateMsg.MessageType = "gamestate";
             GameStateMsg.Data = new JSONObject();
             JSONObject CellJSON = new JSONObject(JSONObject.Type.ARRAY);
@@ -321,7 +327,7 @@ namespace ExampleTicTacToe {
         protected void SendGameEnd() {
             SGUpdateMsg ResetGameMsg = new SGUpdateMsg();
 
-            ResetGameMsg.PlayerId = -1;
+            ResetGameMsg.SGID = -1;
             ResetGameMsg.MessageType = "finish";
             ResetGameMsg.Data = new JSONObject();
             ResetGameMsg.Data.AddField("winner", Winner > 2 ? 0 : Winner);
@@ -375,5 +381,6 @@ namespace ExampleTicTacToe {
                 }
             }
         }
+
     }
 }

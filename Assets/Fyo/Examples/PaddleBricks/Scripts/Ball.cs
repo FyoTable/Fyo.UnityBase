@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PaddleBricks {
 
     public class Ball : MonoBehaviour {
-        private Rigidbody2D body;
+        public Rigidbody2D body;
         new private CircleCollider2D collider;
 
         public bool RandomizeStartAngle = true;

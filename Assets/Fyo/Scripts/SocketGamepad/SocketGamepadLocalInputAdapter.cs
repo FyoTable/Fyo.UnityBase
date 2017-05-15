@@ -24,7 +24,7 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
     public int LocalInputIndex = 0;
 
     //This is set manually to represent the PlayerId sent from the server
-    public int SocketPlayerId = -1;
+    public int SGID = -1;
 
     private void Start() {
         GamepadManager = FindObjectOfType<FyoApplication>();
@@ -39,7 +39,7 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
                 InputData.AddField("axis " + a.ToString(), 0.0f);
 
             SGHandshakeMsg HandshakeMsg = new SGHandshakeMsg();
-            HandshakeMsg.PlayerId = SocketPlayerId;
+            HandshakeMsg.SGID = SGID;
             HandshakeMsg.Serialize();
             GamepadManager.InjectGamepadHandshake(HandshakeMsg);
         } else {
@@ -65,7 +65,7 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
                 InputData.SetField("axis " + a.ToString(), axis);
             }
 
-            UpdateMsg.PlayerId = SocketPlayerId;
+            UpdateMsg.SGID = SGID;
             UpdateMsg.Data = InputData;
             UpdateMsg.Serialize();
 

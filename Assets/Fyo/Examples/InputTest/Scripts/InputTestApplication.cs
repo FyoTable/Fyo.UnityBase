@@ -47,7 +47,7 @@ namespace InputTestApp {
             if (ActiveGamepads.ContainsKey(gamepad)) {
                 FyoPlayer Player = ActiveGamepads[gamepad];
                 ActiveGamepads.Remove(gamepad);
-                Destroy(Player);
+                Destroy(Player.gameObject);
             }
         }
 
@@ -57,5 +57,10 @@ namespace InputTestApp {
         protected override void OnUpdateGamepad(SocketGamepad gamepad) {
         }
 
+        protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
+        }
+
+        protected override void OnGamepadReconnect(SocketGamepad gamepad) {
+        }
     }
 }

@@ -71,6 +71,9 @@ namespace SurvivalShooterExampleGame {
             }
         }
 
+        protected override void OnGamepadReconnect(SocketGamepad gamepad) {
+        }
+
         protected override void OnHandshake(AppHandshakeMsg handshakeMsg) {
         }
 
@@ -81,6 +84,9 @@ namespace SurvivalShooterExampleGame {
 
                 }
             }
+        }
+
+        protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
         }
 
         protected PlayerMovement SpawnPlayer(SocketGamepad gamepad) {

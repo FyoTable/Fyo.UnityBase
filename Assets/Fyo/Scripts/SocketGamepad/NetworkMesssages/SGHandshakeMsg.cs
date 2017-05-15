@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Fyo {
     public class SGHandshakeMsg : JSONObject {
         public string DeviceId;
-        public int PlayerId;
+        public int SGID;
         public string Controller;
 
         private void Setup() {
-            AddField("PlayerId", PlayerId);
+            AddField("PlayerId", SGID);
             AddField("DeviceId", CreateStringObject(DeviceId));
             AddField("Controller", CreateStringObject(Controller));
         }
@@ -25,7 +25,7 @@ namespace Fyo {
 
         public void Clone(JSONObject clone) {
             if (clone.HasField("PlayerId"))
-                clone.GetField(ref PlayerId, "PlayerId");
+                clone.GetField(ref SGID, "PlayerId");
             if (clone.HasField("DeviceId"))
                 clone.GetField(ref DeviceId, "DeviceId");
             if (clone.HasField("Controller"))
@@ -34,13 +34,13 @@ namespace Fyo {
         }
 
         public void Serialize() {
-            SetField("PlayerId", PlayerId);
+            SetField("PlayerId", SGID);
             SetField("DeviceId", CreateStringObject(DeviceId));
             SetField("Controller", CreateStringObject(Controller));
         }
 
         public void Deserialize() {
-            GetField(ref PlayerId, "PlayerId");
+            GetField(ref SGID, "PlayerId");
             GetField(ref DeviceId, "DeviceId");
             GetField(ref Controller, "Controller");
         }

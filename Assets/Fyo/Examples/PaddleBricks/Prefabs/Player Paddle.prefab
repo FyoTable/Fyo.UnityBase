@@ -59,7 +59,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1676004691889944}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e6807844c6337bd4e8f7bc29414f95e4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -94,6 +94,8 @@ MonoBehaviour:
   InputWait: 0
   PaddleMove: {x: 500, y: 0, z: 0}
   Score: 0
+  AttachedBall: {fileID: 0}
+  BallLaunchVelocity: 2
 --- !u!114 &114979018913147226
 MonoBehaviour:
   m_ObjectHideFlags: 1

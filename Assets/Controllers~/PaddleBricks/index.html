@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Fyo Game Table - Paddle Bricks</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <!-- Base Fyo css -->
+        <link rel="stylesheet" href="/fyogametable/dist/fyo.css">
+        <!-- Specific to this controller -->
+        <link rel="stylesheet" href="/PaddleBricks/PaddleBricks.css">
+    </head>
+    <body>
+        <div id="mainContainer">        
+            <!-- Specific to this controller -->
+            <div class="text-lcd" style="position: absolute; top: 0px; right: 0px; left: 0px; z-index: 0">
+                <img src="" style="display:none;" id="profilePic" />
+                <span id="text-message">Paddle</span></div>
+        </div>
+
+
+        <!-- Socket.io is required for FyoGameTable -->
+        <script src="/socket.io/socket.io.js"></script>
+
+        <!-- Three.js is only required if using FyoGameTable.Controls.3D -->
+        <script src="/threejs/build/three.min.js"></script>
+        <script src="/threejs/examples/js/loaders/OBJLoader.js"></script>
+
+        <!-- Minified Fyo Scripts -->
+        <script src="/fyogametable/dist/fyo.js"></script>
+
+        <!-- Controller specific setup -->
+        <script>
+            var playerId = 0;
+
+            var connecter = new FYO.FyoConnection('PaddleBricks');
+            connecter.AddVisualLatency();
+            
+            function fill() {
+                connecter.socket.emit('ack');
+                setTimeout(fill, 10);
+            }
+            fill();
+
+            ////////////////////////////////
+            ///  MessageType Handlers
+            ////////////////////////////////
+
+            function GameStarted(data) {
+                playerId = data.PlayerId;
+                if (data.Master) {
+                    document.getElementById('text-message').innerText = 'MASTER ' + data.PlayerId;
+                } else {
+                    document.getElementById('text-message').innerText = 'PLAYER ' + data.PlayerId;
+                }
+            }
+
+            function MasterControl(data) {
+                document.getElementById('text-message').innerText = 'MASTER ' + playerId;
+            }
+
+            // Messages from the Node Server (which originated from the game)
+            connecter.on('SGUpdateMsg', function (data) {
+                switch (data.MessageType) {
+                    case 'GameStarted':
+                        GameStarted(data.data);
+                        break;
+                    case 'MasterControl':
+                        MasterControl(data.data);
+                        break;
+                }
+            });
+
+            ////////////////////////////////
+            ///  Control Rendering using FyoGameTable API
+            ////////////////////////////////
+
+            var thumbstickLeftRenderer = new FYO.ThumbStick2D(connecter, {
+                side: false,
+                container: 'mainContainer',
+                onmoved: function (data) {
+                    connecter.SetAxis(FYO.AXIS[0], data.x, FYO.AXIS[1], -data.y);
+                }
+            });
+
+            var buttonRenderer = new FYO.Button2D(connecter, {
+                container: 'mainContainer',
+                image: '/fyogametable/assets/imgs/Button_B_2D.png',
+                ondown: function () {
+                    connecter.SetButtonOn(FYO.BUTTON[0]);
+                },
+                onup: function () {
+                    connecter.SetButtonOff(FYO.BUTTON[0]);
+                }
+            });
+
+            // TODO: (garrett) clean this up so it's more re-usable within the control itself
+            function Reposition() {
+                var width = (window.innerWidth / 2) / 4;
+                buttonRenderer.Set('60%', '65%', width, width);
+            }
+			
+            Reposition();
+            window.addEventListener('resize', Reposition, false);
+        </script>
+
+    </body>
+</html>

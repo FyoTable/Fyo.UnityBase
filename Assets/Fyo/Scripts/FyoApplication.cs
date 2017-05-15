@@ -77,19 +77,23 @@ namespace Fyo {
 
             #region Message Handlers
             //Connection Accepted
-            socket.On("connect", HandleConnectedToSGServer);        //Connected, Send App Handshake with App Info
-            socket.On("disconnect", HandleDisconnected);        //Connected, Send App Handshake with App Info
-                                                                //Handshake Accepted
-            socket.On("AppHandshakeMsg", HandleAppHandshake);       //App Handshake Accepted
-                                                                    //Gamepad Connected
-            socket.On("SGHandshakeMsg", HandleGamepadHandshake);    //Handshake a new Gamepad
-                                                                    //Gamepad Update
-            socket.On("SGUpdateMsg", HandleGamepadUpdate);          //Message for a single gamepad
-                                                                    //Gamepad Disconnected
-            socket.On("SGDisconnectMsg", HandleGamepadDisconnected);//Gamepad Disconnected
-                                                                    //Latency Calculation
-            socket.On("app-ping", HandlePing); //Ping Request from Server
-            socket.On("app-latency", HandleLatency); //Ping Calculation from server
+            socket.On("connect", HandleConnectedToSGServer);            //Connected, Send App Handshake with App Info
+            socket.On("disconnect", HandleDisconnected);                //Connected, Send App Handshake with App Info
+                                                                        //Handshake Accepted
+            socket.On("AppHandshakeMsg", HandleAppHandshake);           //App Handshake Accepted
+                                                                        //Gamepad Connected
+            socket.On("SGHandshakeMsg", HandleGamepadHandshake);        //Handshake a new Gamepad
+                                                                        //Gamepad Update
+            socket.On("SGUpdateMsg", HandleGamepadUpdate);              //Message for a single gamepad
+                                                                        //Gamepad Timing Out
+            socket.On("SGTimingOutMsg", HandleGamepadTimingOut);        //Gamepad Timeout Timer has begun
+                                                                        //Gamepad Reconnect
+            socket.On("SGReconnectMsg", HandleGamepadReconnect);        //Gamepad Reconnected
+                                                                        //Gamepad Disconnected
+            socket.On("SGDisconnectMsg", HandleGamepadDisconnected);    //Gamepad Disconnected
+                                                                        //Latency Calculation
+            socket.On("app-ping", HandlePing);                          //Ping Request from Server
+            socket.On("app-latency", HandleLatency);                    //Ping Calculation from server
             #endregion
 
             AssignExtraHandlers();
@@ -102,14 +106,14 @@ namespace Fyo {
         /// <summary>
         /// Creates a virtual object to represent a connected SocketGamepad
         /// </summary>
-        /// <param name="PlayerId">SocketGamepad Identifier as it relates to the SocketGamepadManager</param>
+        /// <param name="SGID">SocketGamepad Identifier as it relates to the SocketGamepadManager</param>
         /// <returns></returns>
-        public SocketGamepad CreateOrReconnectGamepad(int PlayerId) {
+        public SocketGamepad CreateOrReconnectGamepad(int SGID) {
             SocketGamepad gamepad = null;
             if (Gamepads.Count > 0) {
                 for (int g = 0; g < Gamepads.Count; g++) {
                     //TODO: Handle Same Gamepad different device id?
-                    if (Gamepads[g].PlayerId == PlayerId) {
+                    if (Gamepads[g].SGID == SGID) {
                         gamepad = Gamepads[g];
                     }
                 }
@@ -117,12 +121,14 @@ namespace Fyo {
 
             if (gamepad == null) {
                 gamepad = gameObject.AddComponent<SocketGamepad>();
-                gamepad.PlayerId = PlayerId;
+                gamepad.SGID = SGID;
                 gamepad.LocalId = Gamepads.Count;
                 Gamepads.Add(gamepad);
+                OnGamepadPluggedIn(gamepad);
+            } else {
+                OnGamepadReconnect(gamepad);
             }
 
-            OnGamepadPluggedIn(gamepad);
             return gamepad;
         }
 
@@ -136,7 +142,7 @@ namespace Fyo {
                     Gamepads.Add(gamepad);
                     OnGamepadPluggedIn(gamepad);
                 } else {
-                    Debug.LogError("Tried to add duplicate gamepad PlayerId:" + gamepad.PlayerId);
+                    Debug.LogError("Tried to add duplicate gamepad PlayerId:" + gamepad.SGID);
                 }
             } else {
                 Debug.LogError("Null gamepad passed to AddExistingGamepad()");
@@ -149,13 +155,12 @@ namespace Fyo {
         /// <param name="gamepad"></param>
         public void RemoveGamepad(SocketGamepad gamepad) {
             if (gamepad != null) {
+                OnGamepadUnplugged(gamepad);
                 if (ActiveGamepads.ContainsKey(gamepad)) {
-                    Gamepads.Remove(gamepad);
-                    OnGamepadUnplugged(gamepad);
-                    DestroyImmediate(gamepad);
-                } else {
-                    Debug.LogError("Tried to remove an unregistered gamepad PlayerId: " + gamepad.PlayerId);
+                    ActiveGamepads.Remove(gamepad);
                 }
+                Gamepads.Remove(gamepad);
+                DestroyImmediate(gamepad);
             } else {
                 Debug.LogError("Null gamepad passed to RemoveGamepad()");
             }
@@ -165,8 +170,8 @@ namespace Fyo {
             return Gamepads.Contains(gamepad);
         }
 
-        public SocketGamepad GetGamepad(int PlayerId) {
-            return Gamepads.Find(g => g.PlayerId == PlayerId);
+        public SocketGamepad GetGamepad(int SGID) {
+            return Gamepads.Find(g => g.SGID == SGID);
         }
         #endregion
 
@@ -201,6 +206,18 @@ namespace Fyo {
         protected abstract void OnUpdateGamepad(SocketGamepad gamepad);
 
         /// <summary>
+        /// Triggered when a SocketGamepad begins Timing out on the Fyo server
+        /// </summary>
+        /// <param name="gamepad"></param>
+        protected abstract void OnGamepadTimingOut(SocketGamepad gamepad);
+
+        /// <summary>
+        /// Triggered when a SocketGamepad Reconnects
+        /// </summary>
+        /// <param name="gamepad"></param>
+        protected abstract void OnGamepadReconnect(SocketGamepad gamepad);
+
+        /// <summary>
         /// Called after a gamepad is removed from the system
         /// </summary>
         /// <param name="gamepad">Virtual SocketGamepad object which was unplugged</param>
@@ -211,7 +228,7 @@ namespace Fyo {
         /// <summary>
         /// Handler for 'connect' message from Socket Gamepad Manager
         /// Generates an AppHandshakeMsg with Controller Payloads
-        /// for use by the Socket Gamepad Server
+        /// if any and sends it to the server, as well as the default controller name
         /// </summary>
         /// <param name="e"></param>
         protected void HandleConnectedToSGServer(SocketIOEvent e) {
@@ -251,7 +268,7 @@ namespace Fyo {
         /// </summary>
         /// <param name="e"></param>
         protected void HandleDisconnected(SocketIOEvent e) {
-            Debug.Log("Disconnect Received: " + e.data);
+            Debug.Log("Disconnect Received from Server: " + e.data);
             OnDisconnected();
         }
 
@@ -262,12 +279,25 @@ namespace Fyo {
         protected void HandleGamepadHandshake(SocketIOEvent e) {
             //Upon Handshake, create the Gamepad
             SGHandshakeMsg gamepadHandshake = new SGHandshakeMsg(e.data);
-            SocketGamepad gamepad = CreateOrReconnectGamepad(gamepadHandshake.PlayerId);
+            SocketGamepad gamepad = CreateOrReconnectGamepad(gamepadHandshake.SGID);
             if (gamepad != null) {
                 Debug.Log("Gamepad Handshake: " + e.data);
             } else {
                 Debug.LogError("Gamepad Handshake failed: " + e.data);
             }
+        }
+
+        protected void HandleGamepadTimingOut(SocketIOEvent e) {
+            SGUpdateMsg gamepadTimingOut = new SGUpdateMsg(e.data);
+            Debug.Log("Gamepad " + gamepadTimingOut.SGID + " Timing out");
+            SocketGamepad gamepad = GetGamepad(gamepadTimingOut.SGID);
+            OnGamepadTimingOut(gamepad);
+        }
+
+        protected void HandleGamepadReconnect(SocketIOEvent e) {
+            SGHandshakeMsg gamepadHandshake = new SGHandshakeMsg(e.data);
+            Debug.Log("Gamepad " + gamepadHandshake.SGID + " Reconnected");
+            SocketGamepad gamepad = CreateOrReconnectGamepad(gamepadHandshake.SGID);
         }
 
         #region Local Testing
@@ -293,13 +323,11 @@ namespace Fyo {
         //Change Input array to Dictionary of named delegates instead of an array of 20 floats
         protected void HandleGamepadUpdate(SocketIOEvent e) {
             SGUpdateMsg UpdateMsg = new SGUpdateMsg(e.data);
-
-            Debug.Log(DateTime.Now.ToString() + " Gamepad " + UpdateMsg.PlayerId.ToString() + UpdateMsg.Data);
-
-            if (UpdateMsg.PlayerId > -1) {
-                SocketGamepad gamepad = GetGamepad(UpdateMsg.PlayerId);
+            //Debug.Log("Gamepad Update Received for " + UpdateMsg.SGID.ToString());
+            if (UpdateMsg.SGID > -1) {
+                SocketGamepad gamepad = GetGamepad(UpdateMsg.SGID);
                 if (gamepad == null) {
-                    Debug.Log("Controller " + UpdateMsg.PlayerId + " sending Updates without handshake!");
+                    Debug.Log("Controller " + UpdateMsg.SGID + " sending Updates without handshake!");
                 } else {
                     gamepad.InputData = UpdateMsg.Data;
                     OnUpdateGamepad(gamepad);
@@ -311,15 +339,14 @@ namespace Fyo {
         }
 
         protected void HandleGamepadDisconnected(SocketIOEvent e) {
-            int PlayerId = 0;
-            e.data.GetField(ref PlayerId, "PlayerId");
-            if (PlayerId > -1 && PlayerId < ActiveGamepads.Count) {
-                SocketGamepad gamepad = Gamepads.Find(g => g.PlayerId == PlayerId);
+            Debug.Log("Gamepad Disconnect Received: " + e.data + "");
+            SGDisconnectMsg DisconnectMsg = new SGDisconnectMsg(e.data);
+            if (DisconnectMsg.SGID > -1 && DisconnectMsg.SGID < ActiveGamepads.Count) {
+                Debug.Log("Controller " + DisconnectMsg.SGID + " Disconnected.");
+                SocketGamepad gamepad = Gamepads.Find(g => g.SGID == DisconnectMsg.SGID);
                 if (gamepad != null) {
-                    Debug.Log("Removing Gamepad " + PlayerId.ToString());
-                    Gamepads.Remove(gamepad);
-                    OnGamepadUnplugged(gamepad);
-                    DestroyImmediate(gamepad);
+                    Debug.Log("Removing Gamepad " + DisconnectMsg.SGID.ToString());
+                    RemoveGamepad(gamepad);
                 }
             }
         }
@@ -334,6 +361,5 @@ namespace Fyo {
             //Debug.Log("Ping: " + LatencyRoundTripFromServer);
         }
         #endregion
-
     }
 }

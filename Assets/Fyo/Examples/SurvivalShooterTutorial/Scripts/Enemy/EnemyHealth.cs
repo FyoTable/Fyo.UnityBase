@@ -28,6 +28,9 @@ namespace SurvivalShooterExampleGame {
 
             // Setting the current health when the enemy first spawns.
             currentHealth = startingHealth;
+
+            isSinking = false;
+            isDead = false;
         }
 
 

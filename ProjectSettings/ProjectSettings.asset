@@ -76,6 +76,7 @@ PlayerSettings:
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
+  macAppStoreCategory: public.app-category.games
   gpuSkinning: 1
   graphicsJobs: 0
   xboxPIXTextureCapture: 0
@@ -209,6 +210,7 @@ PlayerSettings:
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 0
   metalAPIValidation: 1
+  iOSRenderExtraFrameOnPause: 1
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
@@ -575,7 +577,7 @@ PlayerSettings:
     1: CROSS_PLATFORM_INPUT
     2: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT
-    7: CROSS_PLATFORM_INPUT
+    7: CROSS_PLATFORM_INPUT;SOCKET_GAMEPAD_REWIRED
     15: CROSS_PLATFORM_INPUT
     16: CROSS_PLATFORM_INPUT
   platformArchitecture:

@@ -19,7 +19,7 @@ namespace PaddleBricks {
                 return img.color;
             }
         }
-
+        
         private void OnCollisionEnter2D(Collision2D collision) {
             Ball ball = collision.collider.GetComponent<Ball>();
             if (ball != null) {
@@ -28,6 +28,8 @@ namespace PaddleBricks {
                     if (ball.LastPlayerHit != null) {
                         ball.LastPlayerHit.Score += ScoreValue;
                     }
+
+                    gameObject.SetActive(false);
                 }
             }
         }

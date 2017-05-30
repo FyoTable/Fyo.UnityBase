@@ -32,6 +32,8 @@ namespace Fyo {
                         AxisAlignedMinimumBound.z = TrackedObjects[i].transform.position.z;
                     if (TrackedObjects[i].transform.position.z > AxisAlignedMaximumBound.z)
                         AxisAlignedMaximumBound.z = TrackedObjects[i].transform.position.z;
+                    if (i > 0)
+                        WorldCenterOfObjects *= 0.5f;
                 }
             }
 
@@ -57,9 +59,9 @@ namespace Fyo {
             if (ZoomToFit) {
                 Camera camera = GetComponent<Camera>();
                 if (camera != null) {
-                    float Width = Mathf.Abs((AxisAlignedMaximumBound.x - AxisAlignedMinimumBound.x) * 0.5f);
-                    float Depth = Mathf.Abs((AxisAlignedMaximumBound.z - AxisAlignedMinimumBound.z) * 0.5f);
-                    camera.orthographicSize = Mathf.Clamp(Mathf.Min(Width, Depth), MinimumOrthoSize, Mathf.Max(Width, Depth));
+                    float Width = Mathf.Abs((AxisAlignedMaximumBound.x - AxisAlignedMinimumBound.x));// * 0.5f);
+                    float Depth = Mathf.Abs((AxisAlignedMaximumBound.z - AxisAlignedMinimumBound.z));// * 0.5f);
+                    camera.orthographicSize = Mathf.Max(Mathf.Max(Width, Depth), MinimumOrthoSize, Mathf.Max(Width, Depth));
                     //Debug.Log("Ortho " + camera.orthographicSize);
                 }
             }

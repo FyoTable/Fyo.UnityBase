@@ -142,7 +142,7 @@ namespace Fyo {
                     Gamepads.Add(gamepad);
                     OnGamepadPluggedIn(gamepad);
                 } else {
-                    Debug.LogError("Tried to add duplicate gamepad PlayerId:" + gamepad.SGID);
+                    Debug.LogError("Tried to add duplicate SGID:" + gamepad.SGID);
                 }
             } else {
                 Debug.LogError("Null gamepad passed to AddExistingGamepad()");
@@ -307,6 +307,7 @@ namespace Fyo {
         /// </summary>
         /// <param name="handshakeMsg">Manually created Gamepad Handshake Message</param>
         public void InjectGamepadHandshake(SGHandshakeMsg handshakeMsg) {
+            handshakeMsg.Serialize();
             HandleGamepadHandshake(new SocketIOEvent("SGHandshakeMsg", handshakeMsg));
         }
 
@@ -316,6 +317,7 @@ namespace Fyo {
         /// </summary>
         /// <param name="updateMsg"></param>
         public void InjectGamepadUpdate(SGUpdateMsg updateMsg) {
+            updateMsg.Serialize();
             HandleGamepadUpdate(new SocketIOEvent("SGUpdateMsg", updateMsg));
         }
         #endregion
@@ -324,7 +326,7 @@ namespace Fyo {
         protected void HandleGamepadUpdate(SocketIOEvent e) {
             SGUpdateMsg UpdateMsg = new SGUpdateMsg(e.data);
             //Debug.Log("Gamepad Update Received for " + UpdateMsg.SGID.ToString());
-            if (UpdateMsg.SGID > -1) {
+            if (UpdateMsg.SGID > -2) {
                 SocketGamepad gamepad = GetGamepad(UpdateMsg.SGID);
                 if (gamepad == null) {
                     Debug.Log("Controller " + UpdateMsg.SGID + " sending Updates without handshake!");

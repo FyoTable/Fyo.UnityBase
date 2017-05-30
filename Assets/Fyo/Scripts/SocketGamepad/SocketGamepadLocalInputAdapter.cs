@@ -36,12 +36,7 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
 
             //Allocate Axes
             for (int a = 0; a < 8; a++)
-                InputData.AddField("axis " + a.ToString(), 0.0f);
-
-            SGHandshakeMsg HandshakeMsg = new SGHandshakeMsg();
-            HandshakeMsg.SGID = SGID;
-            HandshakeMsg.Serialize();
-            GamepadManager.InjectGamepadHandshake(HandshakeMsg);
+                InputData.AddField("axis " + (a + 1).ToString(), 0.0f);
         } else {
             Debug.LogWarning("Local Input is not configured for a valid Local Gamepad");
         }
@@ -55,13 +50,13 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
         if (GamepadManager != null) {
             //Buttons 0-9       
             for (b = 0; b < 10; b++) {
-                button = Input.GetAxisRaw(PlayerStr + LocalInputIndex.ToString() + ButtonStr + b.ToString()) > 0;
+                button = Input.GetAxisRaw(PlayerStr + (LocalInputIndex + 1).ToString() + ButtonStr + b.ToString()) > 0;
                 InputData.SetField("button " + b.ToString(), button);
             }
 
             //Axes (LeftX, LeftY, RightX, RightY, POVX, POVY, LeftTrigger, RightTrigger) 0-8 (indices 10-17)
             for (a = 0; a < 8; a++) {
-                axis = Input.GetAxisRaw(PlayerStr + LocalInputIndex.ToString() + AxisStr + a.ToString());
+                axis = Input.GetAxisRaw(PlayerStr + (LocalInputIndex + 1).ToString() + AxisStr + (a + 1).ToString());
                 InputData.SetField("axis " + a.ToString(), axis);
             }
 

@@ -17,6 +17,9 @@ namespace ExampleTicTacToe {
         TicTacToePlayer OPlayer;
         public int PlayerIconOffset = 200;
         public long InputWaitMs = 1000;
+        public GameObject XWinsPlaque;
+        public GameObject OWinsPlaque;
+        public GameObject DrawPlaque;
 
         public enum CurrentModeType {
             WaitForPlayers,
@@ -110,6 +113,12 @@ namespace ExampleTicTacToe {
                 if(player != null)
                     player.Ready = false;
             }
+            if (XWinsPlaque != null)
+                XWinsPlaque.SetActive(false);
+            if (OWinsPlaque != null)
+                OWinsPlaque.SetActive(false);
+            if (DrawPlaque != null)
+                DrawPlaque.SetActive(false);
         }
 
         protected override void OnConnected() {
@@ -238,17 +247,24 @@ namespace ExampleTicTacToe {
                     //TODO: Display Text
                     Debug.Log("[Tic Tac Toe] X Won");
                     XPlayer.Wins++;
+
+                    if (XWinsPlaque != null)
+                        XWinsPlaque.SetActive(true);
                     break;
                 case 2:
                     //TODO: Display Text
                     Debug.Log("[Tic Tac Toe] O Won");
                     OPlayer.Wins++;
+                    if (OWinsPlaque != null)
+                        OWinsPlaque.SetActive(true);
                     break;
                 case 3:
                     //TODO: Display Text
                     Debug.Log("[Tic Tac Toe] Draw");
                     XPlayer.Draws++;
                     OPlayer.Draws++;
+                    if (DrawPlaque != null)
+                        DrawPlaque.SetActive(true);
                     break;
             }
 
@@ -264,7 +280,7 @@ namespace ExampleTicTacToe {
             CellState.AddField("cell", cellid);
             CellState.AddField("state", mark);
 
-            SetCellOnController.SGID = -1;
+            SetCellOnController.SGID = -2;
             SetCellOnController.MessageType = "cell";
             SetCellOnController.Data = CellState;
             SetCellOnController.Serialize();
@@ -327,7 +343,7 @@ namespace ExampleTicTacToe {
         protected void SendGameEnd() {
             SGUpdateMsg ResetGameMsg = new SGUpdateMsg();
 
-            ResetGameMsg.SGID = -1;
+            ResetGameMsg.SGID = -2;
             ResetGameMsg.MessageType = "finish";
             ResetGameMsg.Data = new JSONObject();
             ResetGameMsg.Data.AddField("winner", Winner > 2 ? 0 : Winner);

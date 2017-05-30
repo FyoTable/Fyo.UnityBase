@@ -8,7 +8,7 @@
         <!-- Base Fyo css -->
         <link rel="stylesheet" href="/fyogametable/dist/fyo.css">
         <!-- Specific to this controller -->
-        <link rel="stylesheet" href="/PaddleBricks/PaddleBricks.css">
+        <link rel="stylesheet" href="PaddleBricks.css">
     </head>
     <body>
         <div id="mainContainer">        
@@ -33,7 +33,7 @@
         <script>
             var playerId = 0;
 
-            var connecter = new FYO.FyoConnection('PaddleBricks');
+            var connecter = new FYO.FyoConnection('Paddle Bricks/PaddleBricks');
             connecter.AddVisualLatency();
             
             function fill() {
@@ -75,13 +75,11 @@
             ///  Control Rendering using FyoGameTable API
             ////////////////////////////////
 
-            var thumbstickLeftRenderer = new FYO.ThumbStick2D(connecter, {
-                side: false,
-                container: 'mainContainer',
-                onmoved: function (data) {
-                    connecter.SetAxis(FYO.AXIS[0], data.x, FYO.AXIS[1], -data.y);
-                }
-            });
+			// acceleration or orientation
+			connecter.on('acceleration', function(data) {
+				//document.getElementById('text-message').innerText =  data.x.toFixed(2) + ',' + data.y.toFixed(2) + ',' + data.z.toFixed(2);
+				connecter.SetAxis(FYO.AXIS[0], -data.y,);
+			});
 
             var buttonRenderer = new FYO.Button2D(connecter, {
                 container: 'mainContainer',

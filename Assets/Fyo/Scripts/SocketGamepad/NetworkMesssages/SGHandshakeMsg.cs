@@ -9,7 +9,7 @@ namespace Fyo {
         public string Controller;
 
         private void Setup() {
-            AddField("PlayerId", SGID);
+            AddField("SGID", SGID);
             AddField("DeviceId", CreateStringObject(DeviceId));
             AddField("Controller", CreateStringObject(Controller));
         }
@@ -24,8 +24,8 @@ namespace Fyo {
         }
 
         public void Clone(JSONObject clone) {
-            if (clone.HasField("PlayerId"))
-                clone.GetField(ref SGID, "PlayerId");
+            if (clone.HasField("SGID"))
+                clone.GetField(ref SGID, "SGID");
             if (clone.HasField("DeviceId"))
                 clone.GetField(ref DeviceId, "DeviceId");
             if (clone.HasField("Controller"))
@@ -34,13 +34,13 @@ namespace Fyo {
         }
 
         public void Serialize() {
-            SetField("PlayerId", SGID);
+            SetField("SGID", SGID);
             SetField("DeviceId", CreateStringObject(DeviceId));
             SetField("Controller", CreateStringObject(Controller));
         }
 
         public void Deserialize() {
-            GetField(ref SGID, "PlayerId");
+            GetField(ref SGID, "SGID");
             GetField(ref DeviceId, "DeviceId");
             GetField(ref Controller, "Controller");
         }

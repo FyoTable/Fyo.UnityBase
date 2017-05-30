@@ -10,7 +10,7 @@ namespace Fyo {
         public JSONObject Data = new JSONObject();
 
         private void Setup() {
-            AddField("PlayerId", -1);
+            AddField("SGID", -1);
             AddField("MessageType", "");
             AddField("data", Data);
         }
@@ -29,8 +29,8 @@ namespace Fyo {
 
         public SGDisconnectMsg(JSONObject clone) : base() {
             Setup();
-            if (clone.HasField("PlayerId"))
-                clone.GetField(ref SGID, "PlayerId");
+            if (clone.HasField("SGID"))
+                clone.GetField(ref SGID, "SGID");
             if (clone.HasField("MessageType"))
                 clone.GetField(ref MessageType, "MessageType");
             if (clone.HasField("data"))
@@ -39,13 +39,13 @@ namespace Fyo {
         }
 
         public void Serialize() {
-            SetField("PlayerId", SGID);
+            SetField("SGID", SGID);
             SetField("MessageType", CreateStringObject(MessageType));
             SetField("data", Data);
         }
 
         void Deserialize() {
-            SGID = int.Parse(GetField("PlayerId").str);
+            SGID = int.Parse(GetField("SGID").str);
             MessageType = GetField("MessageType").str;
             Data = this["data"];
         }

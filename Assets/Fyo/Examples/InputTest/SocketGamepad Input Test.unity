@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -258,86 +258,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &837967936
+--- !u!1 &837967936 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1323448905341878, guid: 877f4bafb5b5c5543b60ac8627d28a9a,
     type: 2}
   m_PrefabInternal: {fileID: 1160277989}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 837967939}
-  - component: {fileID: 837967938}
-  - component: {fileID: 837967937}
-  m_Layer: 0
-  m_Name: InputTest Application
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &837967937
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114531118486093780, guid: 877f4bafb5b5c5543b60ac8627d28a9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1160277989}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 837967936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0fb4c14cd41934b86a6ea3f7a91b37, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e1fe9108319860469223f8bbbac7694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppIdString: Input Test
+  AppIdString: Local Input Test
   MaxPlayers: 8
   DefaultController: 
   ControllerPayload: 
   Gamepads: []
   LocalPlayers: []
-  PlayerPrefab: {fileID: 1066440519022838, guid: 81e363dc92fa8bf42a89290aead8e175,
-    type: 2}
-  PlayerStart:
-  - {fileID: 73119190}
-  - {fileID: 17864017}
-  - {fileID: 73774241}
-  - {fileID: 1384600625}
-  - {fileID: 1685861978}
-  - {fileID: 1748875694}
-  - {fileID: 1942273551}
-  - {fileID: 773000134}
-  - {fileID: 758394685}
---- !u!114 &837967938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114304845535982150, guid: 877f4bafb5b5c5543b60ac8627d28a9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1160277989}
-  m_GameObject: {fileID: 837967936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 961346d7e16a445ff93777573e78efd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  url: ws://localhost:8080/socket.io/?EIO=4&transport=websocket
-  autoConnect: 0
-  reconnectDelay: 5
-  ackExpirationTime: 1800
-  pingInterval: 25
-  pingTimeout: 60
---- !u!4 &837967939
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4936266598466884, guid: 877f4bafb5b5c5543b60ac8627d28a9a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1160277989}
-  m_GameObject: {fileID: 837967936}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1160277989
 Prefab:
   m_ObjectHideFlags: 0
@@ -427,9 +369,9 @@ Prefab:
       propertyPath: PlayerStart.Array.data[8]
       value: 
       objectReference: {fileID: 758394685}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114531118486093780, guid: 877f4bafb5b5c5543b60ac8627d28a9a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 877f4bafb5b5c5543b60ac8627d28a9a, type: 2}
-  m_RootGameObject: {fileID: 837967936}
   m_IsPrefabParent: 0
 --- !u!1 &1249950358
 GameObject:

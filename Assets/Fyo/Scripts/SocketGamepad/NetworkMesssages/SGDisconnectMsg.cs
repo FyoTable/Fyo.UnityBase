@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Fyo {
     public class SGDisconnectMsg : JSONObject {
-
         public int SGID = -1;
         public string MessageType = "";
         public JSONObject Data = new JSONObject();

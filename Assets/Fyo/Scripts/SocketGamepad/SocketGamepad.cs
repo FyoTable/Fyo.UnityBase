@@ -4,11 +4,16 @@ using UnityEngine;
 using SocketIO;
 
 namespace Fyo {
-    //Socket.IO Gamepad Connection
+    /// <summary>
+    /// A Virtual Gamepad which is managed by a remote Node.JS endpoint server
+    /// 
+    /// 
+    /// </summary>
     public class SocketGamepad : MonoBehaviour {
         public int SGID = -1;
         public const int GamepadInputCount = 20;
         public int LocalId = -1;
+        public string DeviceId = string.Empty;
 
         public JSONObject InputData = new JSONObject();
         public float[] DataView = new float[20];

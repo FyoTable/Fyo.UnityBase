@@ -12,23 +12,7 @@ namespace InputTestApp {
         string[] Joysticks;
 
         protected override void OnStart() {        
-            Joysticks = Input.GetJoystickNames();
-            if (Joysticks.Length > 0) {
-                SocketGamepadLocalInputAdapter g;
 
-                for (int j = 0; j < Joysticks.Length; j++) {
-                    g = gameObject.AddComponent<SocketGamepadLocalInputAdapter>();
-                    g.SGID = -1;
-
-                    SGHandshakeMsg sgHandshake = new SGHandshakeMsg();
-                    sgHandshake.Controller = "";
-                    sgHandshake.DeviceId = Joysticks[j];
-                    sgHandshake.SGID = g.SGID;
-                    //sgHandshake.Serialize(); //Performed in Inject Function
-
-                    InjectGamepadHandshake(sgHandshake);
-                }
-            }
         }
 
         protected override void AssignExtraHandlers() {

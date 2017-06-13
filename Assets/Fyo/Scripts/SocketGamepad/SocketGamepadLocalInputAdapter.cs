@@ -24,7 +24,10 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
     public int LocalInputIndex = 0;
 
     //This is set manually to represent the PlayerId sent from the server
-    public int SGID = -1;
+    int SGID = -1;
+
+    public bool InjectOnStart = false;
+    public bool IsRegistered = false;
 
     private void Start() {
         GamepadManager = FindObjectOfType<FyoApplication>();
@@ -40,6 +43,16 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
         } else {
             Debug.LogWarning("Local Input is not configured for a valid Local Gamepad");
         }
+
+        if(InjectOnStart) {
+            SGHandshakeMsg handshake = new SGHandshakeMsg();
+            SGID = GamepadManager.MaxPlayers + LocalInputIndex;
+            handshake.SGID = SGID;
+            handshake.DeviceId = Input.GetJoystickNames()[LocalInputIndex];
+            GamepadManager.InjectGamepadHandshake(handshake);
+            IsRegistered = true;
+        }
+
     }
 
     SGUpdateMsg UpdateMsg = new SGUpdateMsg();
@@ -48,6 +61,15 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
     float axis = 0.0f;
     void Update () {
         if (GamepadManager != null) {
+            if(!IsRegistered) {
+                SGHandshakeMsg handshake = new SGHandshakeMsg();
+                SGID = GamepadManager.MaxPlayers + LocalInputIndex;
+                handshake.SGID = SGID;
+                handshake.DeviceId = Input.GetJoystickNames()[LocalInputIndex];
+                GamepadManager.InjectGamepadHandshake(handshake);
+                IsRegistered = true;
+            }
+
             //Buttons 0-9       
             for (b = 0; b < 10; b++) {
                 button = Input.GetAxisRaw(PlayerStr + (LocalInputIndex + 1).ToString() + ButtonStr + b.ToString()) > 0;
@@ -62,7 +84,6 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
 
             UpdateMsg.SGID = SGID;
             UpdateMsg.Data = InputData;
-            UpdateMsg.Serialize();
 
             GamepadManager.InjectGamepadUpdate(UpdateMsg);
         }

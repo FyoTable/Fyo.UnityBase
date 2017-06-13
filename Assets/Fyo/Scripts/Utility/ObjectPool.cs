@@ -15,6 +15,25 @@ namespace Fyo {
         protected int EntryPointer = 0;
         protected GameObject t;
 
+        public bool Finite = false;
+
+        protected int _available;
+        public int Available {
+            get {
+                CountAvailable();
+                return _available;
+            }
+        }
+
+        void CountAvailable() {
+            int a = 0;
+            for(int e = 0; e < Entries.Length; e++) {
+                if (!Entries[e].activeSelf)
+                    a++;
+            }
+            _available = a;
+        }
+
         private void Resize(int NewSize) {
             if (Entries.Length > NewSize) {
                 //Reduce Size
@@ -31,9 +50,11 @@ namespace Fyo {
                     Entries[i] = e[i]; //eio
                 }
             }
+
+            CountAvailable();
         }
 
-        private void Start() {
+        protected virtual void Start() {
             Entries = new GameObject[Count];
             for (EntryPointer = 0; EntryPointer < Count; EntryPointer++) {
                 t = Entries[EntryPointer] = Instantiate(Template);
@@ -41,6 +62,7 @@ namespace Fyo {
             }
             t = null;
             EntryPointer = 0;
+            CountAvailable();
         }
 
         protected int NextSpawnIdx {
@@ -51,20 +73,20 @@ namespace Fyo {
                             return i;
                     }
                 }
-                return -1;
+                return -1; //No more available
             }
         }
 
         public GameObject GetNext(Vector3 Position, Quaternion Rotation, Vector3 Scale) {
             EntryPointer = NextSpawnIdx;
             if (EntryPointer < 0) {
-                if (AutomaticallyResize) {
+                if (!Finite && AutomaticallyResize) {
                     Resize(Entries.Length + ResizeBlockSize);
                     EntryPointer = NextSpawnIdx;
                 }
 
                 if (EntryPointer < 0) {
-                    if (TruncateExistingObjects) {
+                    if (!Finite && TruncateExistingObjects) {
                         EntryPointer = 0;
                     } else {
                         return null;
@@ -82,7 +104,9 @@ namespace Fyo {
             t.transform.position = Position;
             t.transform.rotation = Rotation;
             t.transform.localScale = Scale;
-            t.SetActive(true);
+            //t.SetActive(true); //Get, don't activate
+
+            _available--;
 
             return t;
         }
@@ -95,9 +119,11 @@ namespace Fyo {
             return Spawn(position, rotation, Vector3.one);
         }
 
-        public GameObject Spawn(Vector3 position, Quaternion rotation, Vector3 scale) {
+        public virtual GameObject Spawn(Vector3 position, Quaternion rotation, Vector3 scale, bool SetActive = true) {
             GameObject PooledObject = null;
-            if (Template != null && Entries.Length > 0) {
+            if (Template == null) {
+                Debug.LogError("Empty Spawn Template");
+            } else if (Entries.Length > 0) {
                 PooledObject = GetNext(position, rotation, scale);
             }
 
@@ -107,7 +133,8 @@ namespace Fyo {
                     PooledObject.SetActive(false);
                 }
 
-                PooledObject.SetActive(true);
+                if(PooledObject.activeSelf != SetActive)
+                    PooledObject.SetActive(SetActive);
             }
             return PooledObject;
         }

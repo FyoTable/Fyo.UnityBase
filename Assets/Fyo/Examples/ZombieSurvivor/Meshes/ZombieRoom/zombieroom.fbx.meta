@@ -1,0 +1,306 @@
+fileFormatVersion: 2
+guid: b152b80ac35554d46956a67ad5c6ae6f
+timeCreated: 1496677058
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: big coffee table
+    100002: big shelf
+    100004: bigwall1
+    100006: bigwall2
+    100008: bricks1
+    100010: bricks2
+    100012: bricks3
+    100014: bricks4
+    100016: bricks4.001
+    100018: bricks5
+    100020: Camera
+    100022: coffee table.001
+    100024: crate
+    100026: dining room chair.003
+    100028: dining room table
+    100030: door
+    100032: door trim 1
+    100034: door trim 2
+    100036: door trim 3
+    100038: door trim 4
+    100040: door2
+    100042: dryer
+    100044: floor
+    100046: fridge
+    100048: lamp
+    100050: lamp.001
+    100052: largewall cap
+    100054: largewall cap.001
+    100056: microwave
+    100058: plant pot
+    100060: rug
+    100062: side table.001
+    100064: slat board
+    100066: slat board 2
+    100068: small wall cap
+    100070: small wall cap.001
+    100072: smallwall1
+    100074: smallwall2
+    100076: sofa
+    100078: sofa chair
+    100080: stove
+    100082: thin shelf.001
+    100084: trim
+    100086: tv
+    100088: washing machine
+    100090: window boards
+    100092: //RootNode
+    400000: big coffee table
+    400002: big shelf
+    400004: bigwall1
+    400006: bigwall2
+    400008: bricks1
+    400010: bricks2
+    400012: bricks3
+    400014: bricks4
+    400016: bricks4.001
+    400018: bricks5
+    400020: Camera
+    400022: coffee table.001
+    400024: crate
+    400026: dining room chair.003
+    400028: dining room table
+    400030: door
+    400032: door trim 1
+    400034: door trim 2
+    400036: door trim 3
+    400038: door trim 4
+    400040: door2
+    400042: dryer
+    400044: floor
+    400046: fridge
+    400048: lamp
+    400050: lamp.001
+    400052: largewall cap
+    400054: largewall cap.001
+    400056: microwave
+    400058: plant pot
+    400060: rug
+    400062: side table.001
+    400064: slat board
+    400066: slat board 2
+    400068: small wall cap
+    400070: small wall cap.001
+    400072: smallwall1
+    400074: smallwall2
+    400076: sofa
+    400078: sofa chair
+    400080: stove
+    400082: thin shelf.001
+    400084: trim
+    400086: tv
+    400088: washing machine
+    400090: window boards
+    400092: //RootNode
+    2300000: big coffee table
+    2300002: big shelf
+    2300004: bigwall1
+    2300006: bigwall2
+    2300008: bricks1
+    2300010: bricks2
+    2300012: bricks3
+    2300014: bricks4
+    2300016: bricks4.001
+    2300018: bricks5
+    2300020: coffee table.001
+    2300022: crate
+    2300024: dining room chair.003
+    2300026: dining room table
+    2300028: door
+    2300030: door trim 1
+    2300032: door trim 2
+    2300034: door trim 3
+    2300036: door trim 4
+    2300038: door2
+    2300040: dryer
+    2300042: floor
+    2300044: fridge
+    2300046: lamp
+    2300048: lamp.001
+    2300050: largewall cap
+    2300052: largewall cap.001
+    2300054: microwave
+    2300056: plant pot
+    2300058: rug
+    2300060: side table.001
+    2300062: slat board
+    2300064: slat board 2
+    2300066: small wall cap
+    2300068: small wall cap.001
+    2300070: smallwall1
+    2300072: smallwall2
+    2300074: sofa
+    2300076: sofa chair
+    2300078: stove
+    2300080: thin shelf.001
+    2300082: trim
+    2300084: tv
+    2300086: washing machine
+    2300088: window boards
+    3300000: big coffee table
+    3300002: big shelf
+    3300004: bigwall1
+    3300006: bigwall2
+    3300008: bricks1
+    3300010: bricks2
+    3300012: bricks3
+    3300014: bricks4
+    3300016: bricks4.001
+    3300018: bricks5
+    3300020: coffee table.001
+    3300022: crate
+    3300024: dining room chair.003
+    3300026: dining room table
+    3300028: door
+    3300030: door trim 1
+    3300032: door trim 2
+    3300034: door trim 3
+    3300036: door trim 4
+    3300038: door2
+    3300040: dryer
+    3300042: floor
+    3300044: fridge
+    3300046: lamp
+    3300048: lamp.001
+    3300050: largewall cap
+    3300052: largewall cap.001
+    3300054: microwave
+    3300056: plant pot
+    3300058: rug
+    3300060: side table.001
+    3300062: slat board
+    3300064: slat board 2
+    3300066: small wall cap
+    3300068: small wall cap.001
+    3300070: smallwall1
+    3300072: smallwall2
+    3300074: sofa
+    3300076: sofa chair
+    3300078: stove
+    3300080: thin shelf.001
+    3300082: trim
+    3300084: tv
+    3300086: washing machine
+    3300088: window boards
+    4300000: small wall cap.001
+    4300002: largewall cap.001
+    4300004: small wall cap
+    4300006: largewall cap
+    4300008: door2
+    4300010: big coffee table
+    4300012: sofa chair
+    4300014: big shelf
+    4300016: rug
+    4300018: smallwall1
+    4300020: smallwall2
+    4300022: bigwall2
+    4300024: bigwall1
+    4300026: bricks4.001
+    4300028: bricks5
+    4300030: bricks4
+    4300032: bricks3
+    4300034: bricks2
+    4300036: bricks1
+    4300038: plant pot
+    4300040: coffee table.001
+    4300042: lamp.001
+    4300044: stove
+    4300046: dryer
+    4300048: washing machine
+    4300050: side table.001
+    4300052: trim
+    4300054: dining room chair.003
+    4300056: tv
+    4300058: thin shelf.001
+    4300060: window boards
+    4300062: microwave
+    4300064: lamp
+    4300066: fridge
+    4300068: dining room table
+    4300070: sofa
+    4300072: crate
+    4300074: door
+    4300076: door trim 2
+    4300078: slat board 2
+    4300080: door trim 4
+    4300082: door trim 1
+    4300084: slat board
+    4300086: door trim 3
+    4300088: floor
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

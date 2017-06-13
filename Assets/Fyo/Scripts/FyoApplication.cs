@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
 using System.IO;
+using System.Linq;
 
 namespace Fyo {
     /// <summary>
@@ -52,12 +53,27 @@ namespace Fyo {
         public List<FyoPlayer> LocalPlayers = new List<FyoPlayer>();
         protected float ServerLatency;
 
+        public bool ConnectLocalGamepads = false;
+
         /// <summary>
         /// Assign additional socket message handlers before starting the connection
         /// </summary>
         protected abstract void AssignExtraHandlers();
 
+        Dictionary<string, SocketGamepadLocalInputAdapter> LocalGamepads = new Dictionary<string, SocketGamepadLocalInputAdapter>();
         protected virtual void OnStart() {
+            if (ConnectLocalGamepads) {
+                string[] strJoysticks = Input.GetJoystickNames();
+                SocketGamepadLocalInputAdapter Adapter;
+                for (int j = 0; j < strJoysticks.Length; j++) {
+                    Adapter = gameObject.AddComponent<SocketGamepadLocalInputAdapter>();
+                    Adapter.LocalInputIndex = j;
+                }
+            }
+        }
+
+        void CheckLocalGamepads() {
+
         }
 
         protected void Start() {
@@ -298,6 +314,7 @@ namespace Fyo {
             SGHandshakeMsg gamepadHandshake = new SGHandshakeMsg(e.data);
             Debug.Log("Gamepad " + gamepadHandshake.SGID + " Reconnected");
             SocketGamepad gamepad = CreateOrReconnectGamepad(gamepadHandshake.SGID);
+            //OnGamepadReconnect(gamepad) handled in CreateOrReconnectGamepad
         }
 
         #region Local Testing
@@ -326,7 +343,7 @@ namespace Fyo {
         protected void HandleGamepadUpdate(SocketIOEvent e) {
             SGUpdateMsg UpdateMsg = new SGUpdateMsg(e.data);
             //Debug.Log("Gamepad Update Received for " + UpdateMsg.SGID.ToString());
-            if (UpdateMsg.SGID > -2) {
+            if (UpdateMsg.SGID > -1) {
                 SocketGamepad gamepad = GetGamepad(UpdateMsg.SGID);
                 if (gamepad == null) {
                     Debug.Log("Controller " + UpdateMsg.SGID + " sending Updates without handshake!");

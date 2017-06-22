@@ -11,7 +11,9 @@ namespace PaddleBricks {
         public List<Brick> Bricks = new List<Brick>();
 
         public GameObject BrickPrefab;
-        
+
+        public bool PongMode = false;
+
         void GenerateBrickField(int Density, int ColumnWidth) {
             if (ColumnWidth < 1) {
                 ColumnWidth = 1;
@@ -66,7 +68,8 @@ namespace PaddleBricks {
         }
 
         protected override void OnStart() {
-            GenerateBrickField(200, 20);
+            if(!PongMode)
+                GenerateBrickField(200, 20);
         }
 
         protected override void AssignExtraHandlers() {
@@ -131,7 +134,6 @@ namespace PaddleBricks {
         protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
             gamepad.InputData.Clear();
         }
-
     }
 }
 

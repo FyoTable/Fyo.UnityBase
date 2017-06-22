@@ -27,12 +27,14 @@ namespace ZombieSurvivor {
         }
 
         protected override void OnDisconnected() {
+            Application.Quit();
         }
 
         protected override void OnGamepadPluggedIn(SocketGamepad gamepad) {
             //Temporary until Acquire Caleb's menu system to select player
 
-            if(PlayerSpawn.Count > 0) {
+
+            if (PlayerSpawn.Count > 0) {
                 //Debug.Log("Next Player: " + NextSpawn.ToString());
                 if(NextSpawn < PlayerSpawn.Count) {
                     GameObject PlayerObj = PlayerSpawn[NextSpawn].Spawn(PlayerSpawn[NextSpawn].transform.position, PlayerSpawn[NextSpawn].transform.rotation);
@@ -68,11 +70,12 @@ namespace ZombieSurvivor {
 
         protected override void OnGamepadUnplugged(SocketGamepad gamepad) {
             SurvivorPlayer Player = (SurvivorPlayer)ActiveGamepads[gamepad];
-
+            Debug.Log("Removing Player " + Player.PlayerId + "(" + gamepad.SGID + ")");
             LocalPlayers.Remove(Player);
-
             Framing.TrackedObjects.Remove(Player.gameObject);
             ActiveGamepads.Remove(gamepad);
+
+            Destroy(Player.gameObject);
         }
 
         protected override void OnHandshake(AppHandshakeMsg handshakeMsg) {

@@ -14,6 +14,7 @@ namespace Fyo {
         public const int GamepadInputCount = 20;
         public int LocalId = -1;
         public string DeviceId = string.Empty;
+        public string Controller = string.Empty;
 
         public JSONObject InputData = new JSONObject();
         public float[] DataView = new float[20];

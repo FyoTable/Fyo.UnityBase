@@ -280,6 +280,10 @@ MonoBehaviour:
   ControllerPayload: 
   Gamepads: []
   LocalPlayers: []
+  ConnectLocalGamepads: 1
+  PlayerPrefab: {fileID: 1066440519022838, guid: 81e363dc92fa8bf42a89290aead8e175,
+    type: 2}
+  PlayerStart: []
 --- !u!1001 &1160277989
 Prefab:
   m_ObjectHideFlags: 0

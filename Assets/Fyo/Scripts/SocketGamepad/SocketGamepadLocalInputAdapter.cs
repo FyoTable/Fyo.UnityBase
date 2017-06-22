@@ -52,7 +52,6 @@ public class SocketGamepadLocalInputAdapter : MonoBehaviour {
             GamepadManager.InjectGamepadHandshake(handshake);
             IsRegistered = true;
         }
-
     }
 
     SGUpdateMsg UpdateMsg = new SGUpdateMsg();

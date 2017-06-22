@@ -29,7 +29,7 @@ namespace Fyo {
             if (clone.HasField("DeviceId"))
                 clone.GetField(ref DeviceId, "DeviceId");
             if (clone.HasField("Controller"))
-                clone.GetField(ref DeviceId, "Controller");
+                clone.GetField(ref Controller, "Controller");
             Serialize();
         }
 

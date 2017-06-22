@@ -132,6 +132,7 @@ namespace ExampleTicTacToe {
         }
 
         protected override void OnGamepadPluggedIn(SocketGamepad gamepad) {
+
             if (XPlayer.Gamepad == null) {
                 XPlayer.Xs = true;
                 XPlayer.FyoApp = this;
@@ -218,6 +219,7 @@ namespace ExampleTicTacToe {
         }
 
         protected override void OnGamepadReconnect(SocketGamepad gamepad) {
+            
         }
 
         protected void StartGame() {
@@ -343,7 +345,7 @@ namespace ExampleTicTacToe {
         protected void SendGameEnd() {
             SGUpdateMsg ResetGameMsg = new SGUpdateMsg();
 
-            ResetGameMsg.SGID = -2;
+            ResetGameMsg.SGID = -1;
             ResetGameMsg.MessageType = "finish";
             ResetGameMsg.Data = new JSONObject();
             ResetGameMsg.Data.AddField("winner", Winner > 2 ? 0 : Winner);

@@ -10,11 +10,7 @@ namespace InputTestApp {
         public List<Transform> PlayerStart = new List<Transform>();
 
         string[] Joysticks;
-
-        protected override void OnStart() {        
-
-        }
-
+        
         protected override void AssignExtraHandlers() {
         }
 

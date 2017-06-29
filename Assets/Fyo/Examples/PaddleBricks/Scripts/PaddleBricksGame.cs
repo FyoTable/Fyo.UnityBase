@@ -11,10 +11,150 @@ namespace PaddleBricks {
         public List<Brick> Bricks = new List<Brick>();
 
         public GameObject BrickPrefab;
+        
+        public enum GameMode {
+            Pong,
+            Brickout
+        } GameMode Mode = GameMode.Brickout;
 
-        public bool PongMode = false;
+        public enum GameState {
+            None,
+            WaitForPlayers,
+            SetupGame,
+            Spawn,
+            Play,
+            End
+        } public GameState CurrentState = GameState.None;
+        GameState NextState = GameState.None;
 
-        void GenerateBrickField(int Density, int ColumnWidth) {
+        private void SetupGame() {
+            //Set up game for current settings
+            switch(Mode) {
+                default:
+                case GameMode.Pong:
+                    //Show Player Scores for N Seconds
+                    //Wait N Seconds
+                    //Spawn Ball
+                    //Randomize Ball Direction
+                    //Give Players Control
+                    break;
+                case GameMode.Brickout:
+                    //Generate Bricks in Realtime
+                    //Wait Until Bricks finished Generating
+                    //Spawn Players, each with a ball
+                    //Give Players Control
+                    break;
+            }
+
+            CurrentState = GameState.Spawn;
+        }
+
+        public enum FieldType {
+            Fourths,
+            Sixths,
+            Circular
+        } public FieldType FieldConfiguration;
+
+        private void SetupPlayerPositions() {
+            //Field Configurations:
+            ///Fourths
+            //// One full-height field at left and right
+            //// Two full-width fields at top and bottom
+            ///Sixths
+            //// One full-height field at left and right
+            //// Two half-width fields at top and bottom
+            ///Circular
+            //// One Equal length side of a regular player-count-gon
+            switch(FieldConfiguration) {
+                default:
+                case FieldType.Fourths:
+                    break;
+                case FieldType.Sixths:
+                    break;
+                case FieldType.Circular:
+                    break;
+            }
+        }
+
+        IEnumerator BeginPlay() {
+            yield return new WaitForSeconds(3.0f);
+            CurrentState = GameState.Play;
+        }
+
+        private void StartGame() {
+            CurrentState = GameState.Spawn;
+
+            SetupGame();
+
+            //Set up game for current settings
+            switch (Mode) {
+                default:
+                case GameMode.Pong:
+                    SetupPlayerPositions();
+
+                    //Show Player Scores for N Seconds
+                    //Wait N Seconds
+                    //Spawn Ball
+                    //Randomize Ball Direction
+                    //Give Players Control
+                    break;
+                case GameMode.Brickout:
+                    GenerateBrickField(200, 20);
+                    //Generate Bricks in Realtime
+                    //Wait Until Bricks finished Generating
+                    //Spawn Players, each with a ball
+                    //Give Players Control
+                    break;
+            }
+
+            StartCoroutine(BeginPlay());
+        }
+
+        private void Update() {
+            switch(CurrentState) {
+                case GameState.None:
+                    //TODO: Use as Reset
+                    CurrentState = GameState.WaitForPlayers;
+                    break;
+                case GameState.WaitForPlayers:
+                    Paddle paddle;
+                    Dictionary<SocketGamepad, FyoPlayer>.Enumerator e = ActiveGamepads.GetEnumerator();
+                    while(e.MoveNext()) {
+                        paddle = (Paddle)e.Current.Value;
+                        if(!paddle.Ready) {
+                            return;
+                        }
+                    }
+
+                    //Menu Transition?
+                    CurrentState = GameState.SetupGame;
+                    break;
+                case GameState.SetupGame:
+                    //Master Controller chooses game settings
+                    //Nothing to update, just wait
+                    break;
+                case GameState.Spawn:
+                    //State update, running the BeginPlay() coroutine to start the game
+                    break;
+                case GameState.Play:
+                    break;
+                case GameState.End:
+                    Application.Quit();
+                    break;
+            }
+        }
+
+        void ClearBrickField() {
+            if (Bricks.Count > 0) {
+                for (int b = 0; b < Bricks.Count; b++) {
+                    DestroyImmediate(Bricks[b]);
+                }
+
+                Bricks.Clear();
+            }
+        }
+
+        IEnumerator GenerateBrickField(int Density, int ColumnWidth) {
             if (ColumnWidth < 1) {
                 ColumnWidth = 1;
                 Debug.LogError("Brick Field Column Width was < 1");
@@ -64,18 +204,23 @@ namespace PaddleBricks {
                 } else {
                     Debug.LogError("Brick Prefab does not contain a Brick Component!");
                 }
+
+                yield return new WaitForSeconds(0.05f);
             }
+
+            yield return null;
         }
 
         protected override void OnStart() {
-            if(!PongMode)
-                GenerateBrickField(200, 20);
         }
 
         protected override void AssignExtraHandlers() {
         }
 
         protected override void OnConnected() {
+        }
+
+        protected override void OnHandshake(AppHandshakeMsg handshakeMsg) {
         }
 
         protected override void OnDisconnected() {
@@ -114,6 +259,13 @@ namespace PaddleBricks {
             }
         }
 
+        protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
+            gamepad.InputData.Clear();
+        }
+
+        protected override void OnUpdateGamepad(SocketGamepad gamepad) {
+        }
+
         protected override void OnGamepadUnplugged(SocketGamepad gamepad) {
             if (ActiveGamepads.ContainsKey(gamepad)) {
                 FyoPlayer Player = ActiveGamepads[gamepad];
@@ -125,15 +277,6 @@ namespace PaddleBricks {
         protected override void OnGamepadReconnect(SocketGamepad gamepad) {
         }
 
-        protected override void OnHandshake(AppHandshakeMsg handshakeMsg) {
-        }
-
-        protected override void OnUpdateGamepad(SocketGamepad gamepad) {
-        }
-        
-        protected override void OnGamepadTimingOut(SocketGamepad gamepad) {
-            gamepad.InputData.Clear();
-        }
     }
 }
 

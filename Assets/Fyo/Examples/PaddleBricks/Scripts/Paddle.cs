@@ -13,33 +13,37 @@ namespace PaddleBricks {
         public long Score = 0;
         public Ball AttachedBall;
         public float BallLaunchVelocity = 540.0f;
+        public Color color = Color.green;
 
         RectTransform rt;
         private void Start() {
             rt = (RectTransform)transform;
         }
         
-        float CurrentAccel = 0.0f;
-        float TotalAccel = 0.0f;
+        float CurrentDistance = 0.0f;
+        float TotalDistance = 0.0f;
         float Direction = 0.0f;
         
         private void Update() {
             if (Gamepad != null) {// && Ready) {
-                //Acceleration = Distance / Time
-                //Distance = Acceleration * Time
+                //Acceleration = Distance / (Time * Time)
+                //Distance = 0.5f * Acceleration * (Time * Time)
+                //Distance = Speed * Time
+                //Speed = Distance / Time
+                //Time = Distance / Speed
 
-                CurrentAccel = Gamepad.GetAxis("axis 0") * Time.deltaTime;
-                TotalAccel += CurrentAccel;
+                CurrentDistance = 0.5f * Gamepad.GetAxis("axis 0") * (Time.deltaTime * Time.deltaTime);
+                TotalDistance += CurrentDistance;
 
                 if (Direction == 0) {
-                    if (TotalAccel > 0)
+                    if (TotalDistance > 0)
                         Direction = 1.0f;
-                    else if (TotalAccel < 0)
+                    else if (TotalDistance < 0)
                         Direction = -1.0f;
                     
                 }
 
-                PaddleDistance += TotalAccel * PaddleSpeed;
+                PaddleDistance += TotalDistance * PaddleSpeed;
                 if (Mathf.Abs(PaddleDistance) > PaddleMove.x) {
                     PaddleDistance = Mathf.Sign(PaddleDistance) * PaddleMove.x;
                 }
@@ -52,10 +56,6 @@ namespace PaddleBricks {
                         AttachedBall.transform.parent = transform.parent;
                         AttachedBall = null;
                     }
-                }
-            } else {
-                if (PlayerId == 0) {
-                    //Master Controller
                 }
             }
         }
